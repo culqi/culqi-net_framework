@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "NuevoToken";
+}
+
+<h2>NuevoToken</h2>
+
+<button id="botonNuevoToken">Nuevo Token</button>
+
+<!-- Abre el checkout Culqi -->
+<script type="text/javascript">
+    $('#botonNuevoToken').on('click', function(e){
+        Culqi.abrir();
+        e.preventDefault();
+    });
+</script>
+<!---->
+<!-- Asigna el código del comercio -->
+<script>
+    Culqi.codigoComercio = '6Xb9O1C2yFhd';
+</script>
+<!---->
+<!-- Configuración del contenido del checkout Culqi -->
+<script>
+    Culqi.configurar({
+        nombre: 'Comercio Nano 2',
+        orden: 'x123131',
+        moneda: 'PEN',
+        descripcion: 'Nuevo Token',
+        monto: 100,
+        guardar: false
+    });
+</script>
+<!---->
+<!-- Obtenemos el token de la tarjeta -->
+<script>
+// Recibimos Token del Culqi.js
+function culqi() {
+
+    if (Culqi.token) {
+      // Imprimir Token
+      console.log(Culqi.token.id);
+      alert("Token generado!\n"+Culqi.token.id);
+    }
+    else{
+      // Hubo un problema...
+      // Mostramos JSON de objeto error en consola
+      console.log(Culqi.error);
+      alert("Culqi.error.mensaje");
+    }
+};
+</script>
+<script>
+// Ejemplo: Tratando respuesta con AJAX (jQuery)
+function culqi() {
+
+    $.ajax({
+        url: "@Url.Action("NuevoToken")",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+
+                'token'       : Culqi.token.id
+
+            }),
+       success: function(data){
+
+       },
+       error:function( ){
+
+       }
+    });
+};
+</script>
+<!---->
