@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{FDCB25A7-5BDA-41E6-81FE-E6E2FB359013}|Unit Tests">
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="culqi.net" expanded="True">
+            <Node name="culqi.net" expanded="True">
+              <Node name="References" expanded="True">
+                <Node name="From Packages" expanded="True">
+                  <Node name="RestSharp" selected="True" />
+                </Node>
+              </Node>
+              <Node name="Packages" expanded="True" />
+              <Node name="model" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="test" expanded="True" />
+              <Node name="util" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="culqi.net" expanded="True" selected="True">
+            <Node name="culqi.net" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.culqi.net PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
