@@ -3,7 +3,9 @@ using System.Collections.Generic;
 namespace culqi.net
 {
 	public class Charge
-	{
+	{	
+		const string URL = "/charges/";
+
 		Security security { get; set; }
 
 		public Charge(Security security)
@@ -13,20 +15,17 @@ namespace culqi.net
 
 		public string List(Dictionary<string, string> query_params)
 		{
-			Util util = new Util();
-			return util.Request(query_params, ChargeModel.URL, security.api_key, "get");
+			return new Util().Request(query_params, URL, security.api_key, "get");
 		}
 
-		public string Create(ChargeModel charge)
-		{	
-			Util util = new Util();
-			return util.Request(charge, ChargeModel.URL, security.api_key, "post");
+		public string Create(Dictionary<string, object> body)
+		{
+			return new Util().Request(body, URL, security.api_key, "post");
 		}
 
 		public string Get(String id)
 		{
-			Util util = new Util();
-			return util.Request(null, ChargeModel.URL+id+"/", security.api_key, "get");
+			return new Util().Request(null, URL+id+"/", security.api_key, "get");
 		}
 
 	}
