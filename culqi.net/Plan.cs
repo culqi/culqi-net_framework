@@ -4,6 +4,8 @@ namespace culqi.net
 {
 	public class Plan
 	{	
+		const string URL = "/plans/";
+
 		Security security { get; set; }
 
 		public Plan(Security security)
@@ -13,20 +15,17 @@ namespace culqi.net
 
 		public string List(Dictionary<string, string> query_params)
 		{
-			Util util = new Util();
-			return util.Request(query_params, PlanModel.URL, security.api_key, "get");
+			return new Util().Request(query_params, URL, security.api_key, "get");
 		}
 
-		public string Create(PlanModel plan)
+		public string Create(Dictionary<string, object> body)
 		{
-			Util util = new Util();
-			return util.Request(plan, PlanModel.URL, security.api_key, "post");
+			return new Util().Request(body, URL, security.api_key, "post");
 		}
 
 		public string Get(String id)
 		{
-			Util util = new Util();
-			return util.Request(null, PlanModel.URL + id + "/", security.api_key, "get");
+			return new Util().Request(null, URL + id + "/", security.api_key, "get");
 		}
 
 	}

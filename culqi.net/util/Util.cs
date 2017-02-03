@@ -36,7 +36,7 @@ namespace culqi.net
 				request = new RestRequest(url, Method.DELETE);
 			}
 			else if (type_method.Equals("post"))
-			{	
+			{
 				request = new RestRequest(url, Method.POST);
 				request.AddJsonBody(model);
 			}

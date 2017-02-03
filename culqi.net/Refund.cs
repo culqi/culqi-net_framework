@@ -3,7 +3,10 @@ using System.Collections.Generic;
 namespace culqi.net
 {
 	public class Refund
-	{
+	{	
+
+		const string URL = "/refunds/";
+
 		Security security { get; set; }
 
 		public Refund(Security security)
@@ -13,20 +16,17 @@ namespace culqi.net
 
 		public string List(Dictionary<string, string> query_params)
 		{
-			Util util = new Util();
-			return util.Request(query_params, RefundModel.URL, security.api_key, "get");
+			return new Util().Request(query_params, URL, security.api_key, "get");
 		}
 
-		public string Create(RefundModel refund)
+		public string Create(Dictionary<string, object> body)
 		{
-			Util util = new Util();
-			return util.Request(refund, RefundModel.URL, security.api_key, "post");
+			return new Util().Request(body, URL, security.api_key, "post");
 		}
 
 		public string Get(String id)
 		{
-			Util util = new Util();
-			return util.Request(null, RefundModel.URL + id + "/", security.api_key, "get");
+			return new Util().Request(null, URL + id + "/", security.api_key, "get");
 		}
 
 	}

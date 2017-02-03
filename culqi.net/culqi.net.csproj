@@ -42,18 +42,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="model\Security.cs" />
-    <Compile Include="model\TokenModel.cs" />
     <Compile Include="model\Config.cs" />
     <Compile Include="Charge.cs" />
-    <Compile Include="model\ChargeModel.cs" />
-    <Compile Include="model\PlanModel.cs" />
-    <Compile Include="model\SubscriptionModel.cs" />
-    <Compile Include="model\RefundModel.cs" />
     <Compile Include="Plan.cs" />
     <Compile Include="Subscription.cs" />
     <Compile Include="Refund.cs" />
     <Compile Include="util\Util.cs" />
-    <Compile Include="model\IinsModel.cs" />
     <Compile Include="Iin.cs" />
     <Compile Include="test\Test.cs" />
   </ItemGroup>

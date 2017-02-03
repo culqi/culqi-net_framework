@@ -3,7 +3,10 @@ using System.Collections.Generic;
 namespace culqi.net
 {
 	public class Subscription
-	{
+	{	
+
+		const string URL = "/subscriptions/";
+
 		Security security { get; set; }
 
 		public Subscription(Security security)
@@ -13,26 +16,22 @@ namespace culqi.net
 
 		public string List(Dictionary<string, string> query_params)
 		{
-			Util util = new Util();
-			return util.Request(query_params, SubscriptionModel.URL, security.api_key, "get");
+			return new Util().Request(query_params, URL, security.api_key, "get");
 		}
 
-		public string Create(SubscriptionModel subscription)
+		public string Create(Dictionary<string, object> body)
 		{
-			Util util = new Util();
-			return util.Request(subscription, SubscriptionModel.URL, security.api_key, "post");
+			return new Util().Request(body, URL, security.api_key, "post");
 		}
 
 		public string Get(String id)
 		{
-			Util util = new Util();
-			return util.Request(null, SubscriptionModel.URL + id + "/", security.api_key, "get");
+			return new Util().Request(null, URL + id + "/", security.api_key, "get");
 		}
 
 		public string Delete(String id)
 		{
-			Util util = new Util();
-			return util.Request(null, SubscriptionModel.URL + id + "/", security.api_key, "delete");
+			return new Util().Request(null, URL + id + "/", security.api_key, "delete");
 		}
 
 	}
