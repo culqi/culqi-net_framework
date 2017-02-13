@@ -13,7 +13,7 @@ namespace culqi.net
 			this.security = security;
 		}
 
-		public string List(Dictionary<string, string> query_params)
+		public string List(Dictionary<string, object> query_params)
 		{
 			return new Util().Request(query_params, URL, security.api_key, "get");
 		}
@@ -26,6 +26,11 @@ namespace culqi.net
 		public string Get(String id)
 		{
 			return new Util().Request(null, URL + id + "/", security.api_key, "get");
+		}
+
+		public string Update(Dictionary<string, object> body, String id)
+		{
+			return new Util().Request(body, URL + id + "/", security.api_key, "patch");
 		}
 
 	}

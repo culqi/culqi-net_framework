@@ -29,5 +29,10 @@ namespace culqi.net
 			return new Util().Request(null, URL + id + "/", security.api_key, "get");
 		}
 
+		public string Update(Dictionary<string, object> body, String id)
+		{
+			return new Util().Request(body, URL + id + "/", security.api_key, "patch");
+		}
+
 	}
 }

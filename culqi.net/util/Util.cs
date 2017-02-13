@@ -24,8 +24,8 @@ namespace culqi.net
 				request = new RestRequest(url, Method.GET);
 				if (model != null)
 				{
-					Dictionary<string, string> query_params = (Dictionary<string, string>)model;
-					foreach (KeyValuePair<string, string> entry in query_params)
+					Dictionary<string, object> query_params = (Dictionary<string, object>)model;
+					foreach (KeyValuePair<string, object> entry in query_params)
 					{
 						request.AddParameter(entry.Key, entry.Value, ParameterType.QueryString);
 					}
@@ -38,6 +38,11 @@ namespace culqi.net
 			else if (type_method.Equals("post"))
 			{
 				request = new RestRequest(url, Method.POST);
+				request.AddJsonBody(model);
+			}
+			else if (type_method.Equals("patch"))
+			{
+				request = new RestRequest(url, Method.PATCH);
 				request.AddJsonBody(model);
 			}
 
