@@ -98,7 +98,7 @@ namespace culqi.net
 			{	
 				{"amount", 10000},
 				{"currency_code", "PEN"},
-				{"interval", "days"},
+				{"interval", "dias"},
 				{"interval_count", 15},
 				{"limit", 2},
 				{"metadata", metadata},
@@ -200,6 +200,20 @@ namespace culqi.net
 			var json_object = JObject.Parse(data);
 
 			Assert.AreEqual("subscription", (string)json_object["object"]);
+		}
+
+		[Test]
+		public void GetChargeCapture()
+		{	
+			string charge_data = CreateCharge();
+
+			var json_charge = JObject.Parse(charge_data);
+
+			string capture_data = new Charge(security).Capture((string)json_charge["id"]);
+
+			var json_capture = JObject.Parse(capture_data);
+
+			Assert.AreNotSame("charge", (string)json_capture["id"]);
 		}
 
 		/*protected string CreateRefund()

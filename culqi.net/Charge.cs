@@ -33,5 +33,10 @@ namespace culqi.net
 			return new Util().Request(body, URL + id + "/", security.api_key, "patch");
 		}
 
+		public string Capture(String id)
+		{
+			return new Util().Request(null, URL + id + "/capture/", security.api_key, "post");
+		}
+
 	}
 }
