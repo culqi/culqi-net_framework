@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 namespace culqi.net
 {
-	public class Iin
+	public class Transfer
 	{	
-		const string URL = "/iins/";
+		const string URL = "/transfers/";
 
 		Security security { get; set; }
 
-		public Iin(Security security)
+		public Transfer(Security security)
 		{
 			this.security = security;
 		}

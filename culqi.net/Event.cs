@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 namespace culqi.net
 {
-	public class Iin
+	public class Event
 	{	
-		const string URL = "/iins/";
+		const string URL = "/events/";
 
 		Security security { get; set; }
 
-		public Iin(Security security)
+		public Event(Security security)
 		{
 			this.security = security;
 		}

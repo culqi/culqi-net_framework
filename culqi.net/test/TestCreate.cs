@@ -7,11 +7,11 @@ using Newtonsoft.Json.Linq;
 namespace culqi.net
 {	
 	[TestFixture]
-	public class Test
+	public class TestCreate
 	{
 		Security security = null;
 
-		public Test()
+		public TestCreate()
 		{
 			security = new Security();
 			security.code_commerce = "pk_test_vzMuTHoueOMlgUPj";
@@ -30,14 +30,10 @@ namespace culqi.net
 			Dictionary<string, object> map = new Dictionary<string, object>
 			{
 				{"card_number", "4111111111111111"},
-				{"currency_code", "PEN"},
 				{"cvv", "123"},
 				{"expiration_month", 9},
 				{"expiration_year", 2020},
-				{"fingerprint", "q352454534"},
-				{"last_name", "Muro"},
-				{"email", "wmuro@me.com"},
-				{"first_name", "William"}
+				{"email", "wmuro@me.com"}
 			};
 			return new Token(security).Create(map);
 		}
@@ -59,21 +55,21 @@ namespace culqi.net
 
 			var json_object = JObject.Parse(data);
 
-			Dictionary<string, object> map = new Dictionary<string, object>
+			Dictionary<string, object> metadata = new Dictionary<string, object>
 			{
-				{"address", "Avenida Lima 1232"},
-				{"address_city", "LIMA"},
+				{"order_id", "777"}
+			};
+
+			Dictionary<string, object> map = new Dictionary<string, object>
+			{	
 				{"amount", 1000},
-				{"country_code", "PE"},
+				{"capture", true},
 				{"currency_code", "PEN"},
+				{"description", "Venta de prueba"},
 				{"email", "wmuro@me.com"},
-				{"first_name", "William"},
 				{"installments", 0},
-				{"last_name", "Muro"},
-				{"metadata", ""},
-				{"phone_number", 3333339},
-				{"product_description", "Venta de prueba"},
-				{"token_id", (string)json_object["id"]}
+				{"metadata", metadata},
+				{"source_id", (string)json_object["id"]}
 			};
 
 			return new Charge(security).Create(map);
@@ -93,15 +89,20 @@ namespace culqi.net
 		protected string CreatePlan()
 		{	
 
-			Dictionary<string, object> map = new Dictionary<string, object>
+			Dictionary<string, object> metadata = new Dictionary<string, object>
 			{
-				{"alias", "plan-culqi-"+GetRandomString()},
-				{"amount", 1000},
+				{"others_id", "9092"}
+			};
+
+			Dictionary<string, object> map = new Dictionary<string, object>
+			{	
+				{"amount", 10000},
 				{"currency_code", "PEN"},
-				{"interval", "month"},
-				{"interval_count", 1},
-				{"limit", 12},
-				{"name", "Plan de Prueba "+GetRandomString()},
+				{"interval", "days"},
+				{"interval_count", 15},
+				{"limit", 2},
+				{"metadata", metadata},
+				{"name", "plan-culqi-"+GetRandomString()},
 				{"trial_days", 15}
 			};
 
@@ -118,25 +119,74 @@ namespace culqi.net
 			Assert.AreEqual("plan", (string)json_object["object"]);
 		}
 
+		protected string CreateCustomer()
+		{
+			Dictionary<string, object> map = new Dictionary<string, object>
+			{
+				{"address", "Av Lima 123"},
+				{"address_city", "Lima"},
+				{"country_code", "PE"},
+				{"email", "test"+GetRandomString()+"@culqi.com"},
+				{"first_name", "Test"},
+				{"last_name", "Culqi"},
+				{"phone_number", 99004356}
+			};
+
+			return new Customer(security).Create(map);
+		}
+
+		[Test]
+		public void ValidCreateCustomer()
+		{
+			string data = CreateCustomer();
+
+			var json_object = JObject.Parse(data);
+
+			Assert.AreEqual("customer", (string)json_object["object"]);
+		}
+
+		protected string CreateCard()
+		{
+
+			string token = CreateToken();
+			string customer = CreateCustomer();
+
+			var json_token = JObject.Parse(token);
+			var json_customer = JObject.Parse(customer);
+
+			Dictionary<string, object> map = new Dictionary<string, object>
+			{
+				{"customer_id", (string)json_customer["id"]},
+				{"token_id", (string)json_token["id"]}
+			};
+
+			return new Card(security).Create(map);
+
+		}
+
+		[Test]
+		public void ValidCreateCard()
+		{
+			string data = CreateCard();
+
+			var json_object = JObject.Parse(data);
+
+			Assert.AreEqual("card", (string)json_object["object"]);
+		}
+
+
 		protected string CreateSubscription()
 		{	
 			string plan_data = CreatePlan();
 			var json_plan = JObject.Parse(plan_data);
 
-			string token_data = CreateToken();
-			var json_token = JObject.Parse(token_data);
+			string card_data = CreateCard();
+			var json_card = JObject.Parse(card_data);
 
 			Dictionary<string, object> map = new Dictionary<string, object>
 			{
-				{"address", "Avenida Lima 123213"},
-				{"address_city", "LIMA"},
-				{"country_code", "PE"},
-				{"email", "wmuro@me.com"},
-				{"last_name", "Muro"},
-				{"first_name", "William"},
-				{"phone_number", 1234567789},
-				{"plan_alias", (string)json_plan["alias"]},
-				{"token_id", (string)json_token["id"]}
+				{"card_id", (string)json_card["id"]},
+				{"plan_id", (string)json_plan["id"]}
 			};
 
 			return new Subscription(security).Create(map);
@@ -152,7 +202,7 @@ namespace culqi.net
 			Assert.AreEqual("subscription", (string)json_object["object"]);
 		}
 
-		protected string CreateRefund()
+		/*protected string CreateRefund()
 		{	
 			string data = CreateCharge();
 
@@ -176,7 +226,7 @@ namespace culqi.net
 			var json_object = JObject.Parse(data);
 
 			Assert.AreEqual("refund", (string)json_object["object"]);
-		}
+		}*/
 
 	}
 }

@@ -49,7 +49,12 @@
     <Compile Include="Refund.cs" />
     <Compile Include="util\Util.cs" />
     <Compile Include="Iin.cs" />
-    <Compile Include="test\Test.cs" />
+    <Compile Include="test\TestCreate.cs" />
+    <Compile Include="Card.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="Transfer.cs" />
+    <Compile Include="test\TestPatch.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="model\" />
