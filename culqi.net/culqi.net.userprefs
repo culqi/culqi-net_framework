@@ -1,9 +1,7 @@
 ﻿<Properties StartupConfiguration="{FDCB25A7-5BDA-41E6-81FE-E6E2FB359013}|Unit Tests">
   <MonoDevelop.Ide.Workbench ActiveDocument="test/TestCreate.cs">
     <Files>
-      <File FileName="test/TestPatch.cs" Line="40" Column="42" />
-      <File FileName="Charge.cs" Line="38" Column="83" />
-      <File FileName="test/TestCreate.cs" Line="109" Column="42" />
+      <File FileName="test/TestCreate.cs" Line="12" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.culqi.net PreferredExecutionTarget="MonoDevelop.Default" />
