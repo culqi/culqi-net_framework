@@ -27,8 +27,8 @@ protected static string GetRandomString()
 
 ```cs
 Security security = new Security();
-security.code_commerce = "{LLAVE PUBLICA}";
-security.api_key = "{LLAVE SECRETA}";
+security.public_key = "{LLAVE PUBLICA}";
+security.secret_key = "{LLAVE SECRETA}";
 ```
 
 #### Crear Token

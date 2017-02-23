@@ -7,8 +7,8 @@ namespace culqi.net
 		{
 		}
 
-		public string code_commerce{ get; set; }
-		public string api_key{ get; set; }
+		public string public_key { get; set; }
+		public string secret_key { get; set; }
 
 	}
 }

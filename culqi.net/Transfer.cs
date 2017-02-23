@@ -15,12 +15,12 @@ namespace culqi.net
 
 		public string List(Dictionary<string, string> query_params)
 		{
-			return new Util().Request(query_params, URL, security.api_key, "get");
+			return new Util().Request(query_params, URL, security.secret_key, "get");
 		}
 
 		public string Get(String id)
 		{
-			return new Util().Request(null, URL + id + "/", security.api_key, "get");
+			return new Util().Request(null, URL + id + "/", security.secret_key, "get");
 		}
 
 	}
