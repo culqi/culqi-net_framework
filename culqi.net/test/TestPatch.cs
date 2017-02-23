@@ -13,8 +13,7 @@ namespace culqi.net
 		public TestPatch()
 		{
 			security = new Security();
-			security.code_commerce = "";
-			security.api_key = "sk_test_UTCQSGcXW8bCyU59";
+			security.secret_key = "sk_test_UTCQSGcXW8bCyU59";
 		}
 
 		protected string UpdatePlan()

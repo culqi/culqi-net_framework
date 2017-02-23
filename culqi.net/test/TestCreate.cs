@@ -14,8 +14,8 @@ namespace culqi.net
 		public TestCreate()
 		{
 			security = new Security();
-			security.code_commerce = "pk_test_vzMuTHoueOMlgUPj";
-			security.api_key = "sk_test_UTCQSGcXW8bCyU59";
+			security.public_key = "pk_test_vzMuTHoueOMlgUPj";
+			security.secret_key = "sk_test_UTCQSGcXW8bCyU59";
 		}
 
 		protected static string GetRandomString()

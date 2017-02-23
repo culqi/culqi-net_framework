@@ -1,7 +1,15 @@
 ﻿<Properties StartupConfiguration="{FDCB25A7-5BDA-41E6-81FE-E6E2FB359013}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="test/TestCreate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="test/TestPatch.cs">
     <Files>
-      <File FileName="test/TestCreate.cs" Line="12" Column="11" />
+      <File FileName="Event.cs" Line="23" Column="71" />
+      <File FileName="Iin.cs" Line="23" Column="71" />
+      <File FileName="Plan.cs" Line="33" Column="71" />
+      <File FileName="Refund.cs" Line="34" Column="71" />
+      <File FileName="Subscription.cs" Line="39" Column="71" />
+      <File FileName="Token.cs" Line="23" Column="60" />
+      <File FileName="Transfer.cs" Line="7" Column="36" />
+      <File FileName="test/TestCreate.cs" Line="18" Column="23" />
+      <File FileName="test/TestPatch.cs" Line="17" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.culqi.net PreferredExecutionTarget="MonoDevelop.Default" />
