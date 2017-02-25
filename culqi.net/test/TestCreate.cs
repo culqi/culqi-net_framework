@@ -216,7 +216,7 @@ namespace culqi.net
 			Assert.AreNotSame("charge", (string)json_capture["id"]);
 		}
 
-		/*protected string CreateRefund()
+		protected string CreateRefund()
 		{	
 			string data = CreateCharge();
 
@@ -226,7 +226,7 @@ namespace culqi.net
 			{
 				{"amount", 500},
 				{"charge_id", (string)json_object["id"]},
-				{"reason", "bought an incorrect product"}
+				{"reason", "solicitud_comprador"}
 			};
 
 			return new Refund(security).Create(map);
@@ -240,7 +240,121 @@ namespace culqi.net
 			var json_object = JObject.Parse(data);
 
 			Assert.AreEqual("refund", (string)json_object["object"]);
-		}*/
+		}
+
+		// Consultar Recursos
+
+		[Test]
+		public void findToken()
+		{
+			string data = CreateToken();
+			var json_object = JObject.Parse(data);
+			string token = new Token(security).Get((string)json_object["id"]);
+			var json_token = JObject.Parse(token);
+			Assert.AreEqual("token", (string)json_token["object"]);
+		}
+
+		[Test]
+		public void findCharge()
+		{
+			string data = CreateCharge();
+			var json_object = JObject.Parse(data);
+			string charge = new Charge(security).Get((string)json_object["id"]);
+			var json_charge = JObject.Parse(charge);
+			Assert.AreEqual("charge", (string)json_charge["object"]);
+		}
+
+		[Test]
+		public void findPlan()
+		{
+			string data = CreatePlan();
+			var json_object = JObject.Parse(data);
+			string plan = new Plan(security).Get((string)json_object["id"]);
+			var json_plan = JObject.Parse(plan);
+			Assert.AreEqual("plan", (string)json_plan["object"]);
+		}
+
+		[Test]
+		public void findCustomer()
+		{
+			string data = CreateCustomer();
+			var json_object = JObject.Parse(data);
+			string customer = new Customer(security).Get((string)json_object["id"]);
+			var json_customer = JObject.Parse(customer);
+			Assert.AreEqual("customer", (string)json_customer["object"]);
+		}
+
+		[Test]
+		public void findCard()
+		{
+			string data = CreateCard();
+			var json_object = JObject.Parse(data);
+			string card = new Card(security).Get((string)json_object["id"]);
+			var json_card = JObject.Parse(card);
+			Assert.AreEqual("card", (string)json_card["object"]);
+		}
+
+		[Test]
+		public void findSubscription()
+		{
+			string data = CreateSubscription();
+			var json_object = JObject.Parse(data);
+			string subscrption = new Subscription(security).Get((string)json_object["id"]);
+			var json_subscrption = JObject.Parse(subscrption);
+			Assert.AreEqual("subscription", (string)json_subscrption["object"]);
+		}
+
+		[Test]
+		public void findRefund()
+		{
+			string data = CreateRefund();
+			var json_object = JObject.Parse(data);
+			string refund = new Refund(security).Get((string)json_object["id"]);
+			var json_refund = JObject.Parse(refund);
+			Assert.AreEqual("refund", (string)json_refund["object"]);
+		}
+
+		// Eliminar Recursos
+
+		[Test]
+		public void deleteSubscription()
+		{
+			string data = CreateSubscription();
+			var json_object = JObject.Parse(data);
+			string subscription = new Subscription(security).Delete((string)json_object["id"]);
+			var json_subscription = JObject.Parse(subscription);
+			Assert.True((bool)json_subscription["deleted"]);
+		}
+
+		[Test]
+		public void deletePlan()
+		{
+			string data = CreatePlan();
+			var json_object = JObject.Parse(data);
+			string plan = new Plan(security).Delete((string)json_object["id"]);
+			var json_plan = JObject.Parse(plan);
+			Assert.True((bool)json_plan["deleted"]);
+		}
+
+		[Test]
+		public void deleteCard()
+		{
+			string data = CreateCard();
+			var json_object = JObject.Parse(data);
+			string card = new Card(security).Delete((string)json_object["id"]);
+			var json_card = JObject.Parse(card);
+			Assert.True((bool)json_card["deleted"]);
+		}
+
+		[Test]
+		public void deleteCustomer()
+		{
+			string data = CreateCustomer();
+			var json_object = JObject.Parse(data);
+			string customer = new Customer(security).Delete((string)json_object["id"]);
+			var json_customer = JObject.Parse(customer);
+			Assert.True((bool)json_customer["deleted"]);
+		}
 
 	}
 }

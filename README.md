@@ -3,7 +3,7 @@ Una implementación de Culqi para .NET
 
 | Versión actual|Culqi API|
 |----|----|
-| 0.1 (2017-02-19) |[v2](https://beta.culqi.com)|
+| 0.1 (2017-02-19) |[v2](https://culqi.com/api/)|
 
 ## Requisitos
 
@@ -149,12 +149,14 @@ Dictionary<string, object> refund = new Dictionary<string, object>
 {
 	{"amount", 500},
 	{"charge_id", (string)json_charge["id"]},
-	{"reason", "bought an incorrect product"}
+	{"reason", "solicitud_comprador"}
 };
 
 return new Refund(security).Create(refund);
 ```
 
+## Documentación
+¿Necesitas más información para integrar `culqi-net`? La documentación completa se encuentra en [https://culqi.com/docs/](https://culqi.com/docs/)
 
 ## Autor
 

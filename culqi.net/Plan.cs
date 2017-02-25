@@ -33,5 +33,10 @@ namespace culqi.net
 			return new Util().Request(body, URL + id + "/", security.secret_key, "patch");
 		}
 
+		public string Delete(String id)
+		{
+			return new Util().Request(null, URL + id + "/", security.secret_key, "delete");
+		}
+
 	}
 }
