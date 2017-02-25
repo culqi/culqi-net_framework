@@ -55,6 +55,7 @@
     <Compile Include="Event.cs" />
     <Compile Include="Transfer.cs" />
     <Compile Include="test\TestPatch.cs" />
+    <Compile Include="test\TestAll.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="model\" />

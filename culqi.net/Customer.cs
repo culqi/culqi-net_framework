@@ -13,7 +13,7 @@ namespace culqi.net
 			this.security = security;
 		}
 
-		public string List(Dictionary<string, string> query_params)
+		public string List(Dictionary<string, object> query_params)
 		{
 			return new Util().Request(query_params, URL, security.secret_key, "get");
 		}
