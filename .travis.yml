@@ -1,8 +1,8 @@
 language: csharp
-solution: culqi.net/culqi.net.sln
-install:
-  - nuget restore culqi.net.sln
-  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
-script:
-  - xbuild /p:Configuration=Release solution-name.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./culqi.net/bin/Release/culqi.net.dll
+solution: culqi-net/culqi.net/culqi.net.sln
+before_install:
+  - sudo apt-get install nunit-console
+before_script:
+  - nuget restore solution-name.sln
+after_script:
+  - nunit-console culqi-net/culqi.net/bin/Release/culqi.net.dll
