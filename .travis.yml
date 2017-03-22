@@ -1,8 +1,8 @@
 language: csharp
-solution: culqi.net.sln
+solution: culqi.net/culqi.net.sln
 before_install:
   - sudo apt-get install nunit-console
 before_script:
   - nuget restore solution-name.sln
 after_script:
-  - nunit-console culqi-net/culqi.net/bin/Release/culqi.net.dll
+  - nunit-console culqi.net/bin/Release/culqi.net.dll
