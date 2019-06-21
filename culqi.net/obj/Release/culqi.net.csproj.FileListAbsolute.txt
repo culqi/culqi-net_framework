@@ -1,0 +1,11 @@
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/bin/Release/culqi.net.dll
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/bin/Release/Newtonsoft.Json.dll
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/bin/Release/nunit.framework.dll
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/bin/Release/RestSharp.dll
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/bin/Release/nunit.framework.xml
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/bin/Release/RestSharp.xml
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/bin/Release/Newtonsoft.Json.xml
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/obj/Release/culqi.net.csprojAssemblyReference.cache
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/obj/Release/culqi.net.csproj.CoreCompileInputs.cache
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/obj/Release/culqi.net.csproj.CopyComplete
+/Users/joelibaceta/Projects/culqi-net-sdk/culqi.net/obj/Release/culqi.net.dll
