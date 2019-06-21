@@ -10,15 +10,15 @@
     <AssemblyName>culqi.net</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <PackOnBuild>true</PackOnBuild>
-    <PackageId>culqui-dotnet-sdk</PackageId>
+    <PackageId>culqi-dotnet-sdk</PackageId>
     <PackageVersion>1.0</PackageVersion>
     <Authors>Joel Ibaceta, Willy Aguirre</Authors>
-    <Description>Unofficial .net Culqui SDK</Description>
+    <Description>Unofficial .net Culqi SDK</Description>
     <PackageLicenseUrl>https://github.com/joelibaceta/culqi-dotnet-sdk/blob/master/LICENSE</PackageLicenseUrl>
     <Owners>Joel Ibaceta, Willy Aguirre</Owners>
     <PackageProjectUrl>https://github.com/joelibaceta/culqi-dotnet-sdk</PackageProjectUrl>
-    <PackageTags>nuget, culqui, sdk, dotnet</PackageTags>
-    <Title>SDK no oficial de Culqui para .net</Title>
+    <PackageTags>nuget, culqi, sdk, dotnet</PackageTags>
+    <Title>SDK no oficial de Culqi para .net</Title>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
