@@ -1,6 +1,6 @@
 .DS_Store
 .swp
-culqi.net/bin/
-culqi.net/obj/
-culqi.net/.vs/
-culqi.net/packages/
+bin/
+obj/
+.vs/
+packages/
