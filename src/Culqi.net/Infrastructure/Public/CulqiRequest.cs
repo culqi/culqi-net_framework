@@ -59,11 +59,7 @@ namespace Culqi.Infrastructure.Public
 
         private static AuthenticationHeaderValue BuildAuthorizationHeader(ICulqiClient client, HttpMethod method, string path)
         {
-            string publicApiKey = client.PublicApiKey;
-            string secretApiKey = client.SecretApiKey;
-            string apiToUse = client.SecretApiKey;
-
-            if (publicApiKey == null)
+            if (client.ApiKey == null)
             {
                 var message = "No API key provided. Set your public API key using "
                     + "`CulqiConfiguration.PublicApiKey = \"<API-KEY>\"`. You can generate API keys "
@@ -73,22 +69,7 @@ namespace Culqi.Infrastructure.Public
                 throw new CulqiException(message);
             }
 
-            if (secretApiKey == null)
-            {
-                var message = "No API key provided. Set your secret API key using "
-                    + "`CulqiConfiguration.SecretApiKey = \"<API-KEY>\"`. You can generate API keys "
-                    + "from the Culqi Dashboard. See "
-                    + "https://www.culqi.com/api/#/autenticacion for details or contact support "
-                    + "at https://culqi.zendesk.com/hc/es/requests/new if you have any questions.";
-                throw new CulqiException(message);
-            }
-
-            if ((method == HttpMethod.Post) && (path == "tokens"))
-            {
-                apiToUse = publicApiKey;
-            }
-
-            return new AuthenticationHeaderValue("Bearer", apiToUse);
+            return new AuthenticationHeaderValue("Bearer", client.ApiKey);
         }
 
         private static HttpContent BuildContent(HttpMethod method, BaseOptions options)

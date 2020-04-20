@@ -19,38 +19,26 @@ namespace Culqi.Infrastructure.Public
 {
     public class CulqiClient : ICulqiClient
     {
-        public CulqiClient(string publicApiKey = null, string secretApiKey = null, ICulqiHttpClient httpClient = null, string apiBase = null)
+        public CulqiClient(string apiKey = null, ICulqiHttpClient httpClient = null, string apiBase = null)
         {
-            if (publicApiKey != null && publicApiKey.Length == 0)
+            if (apiKey != null && apiKey.Length == 0)
             {
-                throw new ArgumentException("API key cannot be the empty string.", nameof(publicApiKey));
+                throw new ArgumentException("API key cannot be the empty string.", nameof(apiKey));
             }
 
-            if (publicApiKey != null && StringUtils.ContainsWhitespace(publicApiKey))
+            if (apiKey != null && StringUtils.ContainsWhitespace(apiKey))
             {
-                throw new ArgumentException("API key cannot contain whitespace.", nameof(publicApiKey));
+                throw new ArgumentException("API key cannot contain whitespace.", nameof(apiKey));
             }
 
-            if (secretApiKey != null && secretApiKey.Length == 0)
-            {
-                throw new ArgumentException("API key cannot be the empty string.", nameof(secretApiKey));
-            }
-
-            if (secretApiKey != null && StringUtils.ContainsWhitespace(secretApiKey))
-            {
-                throw new ArgumentException("API key cannot contain whitespace.", nameof(secretApiKey));
-            }
-
-            PublicApiKey = publicApiKey;
-            SecretApiKey = secretApiKey;
+            ApiKey = apiKey;
             HttpClient = httpClient ?? BuildDefaultHttpClient();
             ApiBase = apiBase ?? DefaultApiBase;
         }
 
         public static string DefaultApiBase => "https://secure.culqi.com/v2";
         public string ApiBase { get; }
-        public string PublicApiKey { get; }
-        public string SecretApiKey { get; }
+        public string ApiKey { get; }
         public ICulqiHttpClient HttpClient { get; }
 
         public async Task<T> RequestAsync<T>(
@@ -61,7 +49,7 @@ namespace Culqi.Infrastructure.Public
             CancellationToken cancellationToken = default) where T : ICulqiEntity
         {
             var request = new CulqiRequest(this, method, path, options, requestOptions);
-            var response = await this.HttpClient.MakeRequestAsync(request, cancellationToken)
+            var response = await HttpClient.MakeRequestAsync(request, cancellationToken)
                 .ConfigureAwait(false);
             return ProcessResponse<T>(response);
         }
@@ -73,7 +61,7 @@ namespace Culqi.Infrastructure.Public
 
         private static T ProcessResponse<T>(CulqiResponse response) where T : ICulqiEntity
         {
-            if (response.StatusCode != HttpStatusCode.OK)
+            if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Created )
             {
                 throw BuildCulqiException(response);
             }

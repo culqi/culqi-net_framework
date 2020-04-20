@@ -11,10 +11,10 @@ namespace Culqi.Services.Base
     public class BaseOptions : INestedOptions
     {
         [JsonProperty("expand", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> Expand { get; set; }
+        protected List<string> Expand { get; set; }
 
         [JsonExtensionData]
-        public IDictionary<string, object> ExtraParams { get; set; }
+        protected IDictionary<string, object> ExtraParams { get; set; }
             = new Dictionary<string, object>();
 
         public void AddExpand(string value)

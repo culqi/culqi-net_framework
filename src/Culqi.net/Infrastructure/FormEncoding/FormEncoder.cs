@@ -23,19 +23,18 @@ namespace Culqi.Infrastructure.FormEncoding
             // want to send the Content-Type header.
             if (options == null)
             {
-                return new FormUrlEncodedContent(new List<KeyValuePair<string, string>>());
+                return new StringContent(string.Empty);
             }
 
             var flatParams = FlattenParamsValue(options, null);
 
             // If all parameters have been encoded as strings, then the content can be represented
-            // with application/x-www-form-url-encoded encoding. Otherwise, use
+            // with application/json encoding. Otherwise, use
             // multipart/form-data encoding.
             if (flatParams.All(kvp => kvp.Value is string))
             {
-                var flatParamsString = flatParams
-                    .Select(kvp => new KeyValuePair<string, string>(kvp.Key, kvp.Value as string));
-                return new FormUrlEncodedContent(flatParamsString);
+                var content = JsonConvert.SerializeObject(options);
+                return new StringContent(content, Encoding.UTF8, "application/json");
             }
             else
             {

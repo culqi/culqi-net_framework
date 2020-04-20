@@ -14,9 +14,7 @@ namespace Culqi
 {
     public class CulqiConfiguration
     {
-        private static string publicApiKey;
-
-        private static string secretApiKey;
+        private static string apiKey;
 
         private static ICulqiClient culqiClient;
 
@@ -29,47 +27,24 @@ namespace Culqi
         {
             get
             {
-                if (string.IsNullOrEmpty(publicApiKey) && !string.IsNullOrEmpty(ConfigurationManager.AppSettings["CulqiPublicApiKey"]))
+                if (string.IsNullOrEmpty(apiKey) && !string.IsNullOrEmpty(ConfigurationManager.AppSettings["CulqiApiKey"]))
                 {
-                    publicApiKey = ConfigurationManager.AppSettings["CulqiPublicApiKey"];
+                    apiKey = ConfigurationManager.AppSettings["CulqiApiKey"];
                 }
 
-                return publicApiKey;
+                return apiKey;
             }
 
             set
             {
-                if (value != publicApiKey)
+                if (value != apiKey)
                 {
                     CulqiClient = null;
                 }
 
-                publicApiKey = value;
+                apiKey = value;
             }
-        }
-
-        public static string SecretApiKey
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(secretApiKey) && !string.IsNullOrEmpty(ConfigurationManager.AppSettings["CulqiSecretApiKey"]))
-                {
-                    secretApiKey = ConfigurationManager.AppSettings["CulqiSecretApiKey"];
-                }
-
-                return secretApiKey;
-            }
-
-            set
-            {
-                if (value != secretApiKey)
-                {
-                    CulqiClient = null;
-                }
-
-                secretApiKey = value;
-            }
-        }
+        }        
 
         public static JsonSerializerSettings SerializerSettings { get; set; } = DefaultSerializerSettings();
 
@@ -122,25 +97,7 @@ namespace Culqi
                 throw new CulqiException(message);
             }
 
-            if (SecretApiKey != null && SecretApiKey.Length == 0)
-            {
-                var message = "Your Secret API key is invalid, as it is an empty string. You can "
-                    + "double-check your API key from the Culqi Dashboard. See "
-                    + "https://www.culqi.com/api/#/autenticacion for details or contact support "
-                    + "at https://culqi.zendesk.com/hc/es/requests/new if you have any questions.";
-                throw new CulqiException(message);
-            }
-
-            if (SecretApiKey != null && StringUtils.ContainsWhitespace(SecretApiKey))
-            {
-                var message = "Your Secret API key is invalid, as it contains whitespace. You can "
-                    + "double-check your API key from the Culqi Dashboard. See "
-                    + "https://www.culqi.com/api/#/autenticacion for details or contact support "
-                    + "at https://culqi.zendesk.com/hc/es/requests/new if you have any questions.";
-                throw new CulqiException(message);
-            }
-
-            return new CulqiClient(PublicApiKey, SecretApiKey, new CulqiHttpClient(httpClient: null));
+            return new CulqiClient(PublicApiKey, new CulqiHttpClient(httpClient: null));
         }
     }
 }

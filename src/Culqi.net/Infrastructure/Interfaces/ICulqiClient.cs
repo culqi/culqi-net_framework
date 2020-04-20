@@ -13,8 +13,7 @@ namespace Culqi.Infrastructure.Interfaces
     public interface ICulqiClient
     {
         string ApiBase { get; }
-        string PublicApiKey { get; }
-        string SecretApiKey { get; }
+        string ApiKey { get; }
         Task<T> RequestAsync<T>(
             HttpMethod method, 
             string path,

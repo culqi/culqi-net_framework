@@ -6,11 +6,11 @@ namespace Culqi.Infrastructure
 {
     internal static class EpochTime
     {
-        private static DateTime epochStartDateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private static DateTime epochStartDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
 
         public static DateTime ConvertEpochToDateTime(long seconds)
         {
-            return epochStartDateTime.AddSeconds(seconds);
+            return epochStartDateTime.AddMilliseconds(seconds);
         }
 
         public static long ConvertDateTimeToEpoch(this DateTime datetime)

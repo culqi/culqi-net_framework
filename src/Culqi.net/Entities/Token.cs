@@ -1,4 +1,5 @@
-﻿using Culqi.Entities.Base;
+﻿using Culqi.Entities;
+using Culqi.Entities.Base;
 using Culqi.Entities.Interfaces;
 using Culqi.Infrastructure;
 using Newtonsoft.Json;
@@ -6,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Culqi.Entities
+namespace Culqi
 {
     public class Token : CulqiEntity<Token>, IHasId, IHasObject, IHasMetadata
     {
