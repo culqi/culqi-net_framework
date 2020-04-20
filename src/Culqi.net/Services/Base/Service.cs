@@ -230,7 +230,7 @@ namespace Culqi.Services.Base
                     nameof(id));
             }
 
-            return $"{this.ClassUrl()}/{WebUtility.UrlEncode(id)}";
+            return $"{ClassUrl()}/{WebUtility.UrlEncode(id)}";
         }
     }
 }

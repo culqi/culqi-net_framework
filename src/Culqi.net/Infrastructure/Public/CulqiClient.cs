@@ -6,6 +6,7 @@ using Culqi.Infrastructure.Interfaces;
 using Culqi.Services.Base;
 using Culqi.Services.Common;
 using Culqi.Utils;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -32,11 +33,13 @@ namespace Culqi.Infrastructure.Public
             }
 
             ApiKey = apiKey;
+            
             HttpClient = httpClient ?? BuildDefaultHttpClient();
-            ApiBase = apiBase ?? DefaultApiBase;
+
+            ApiBase = apiBase ?? ((ApiKey.StartsWith("pk")) ? "https://secure.culqi.com/v2" : DefaultApiBase);
         }
 
-        public static string DefaultApiBase => "https://secure.culqi.com/v2";
+        public static string DefaultApiBase => "https://api.culqi.com/v2";
         public string ApiBase { get; }
         public string ApiKey { get; }
         public ICulqiHttpClient HttpClient { get; }
@@ -82,26 +85,24 @@ namespace Culqi.Infrastructure.Public
 
         private static CulqiException BuildCulqiException(CulqiResponse response)
         {
-            JObject jObject = null;
+            CulqiError error = null;
 
             try
             {
-                jObject = JObject.Parse(response.Content);
+                error = JsonConvert.DeserializeObject<CulqiError>(response.Content);
             }
             catch (Newtonsoft.Json.JsonException)
             {
                 return BuildInvalidResponseException(response);
             }
 
-            var errorToken = jObject["error"];
-            if (errorToken == null)
+
+            if (error == null)
             {
                 return BuildInvalidResponseException(response);
             }
 
-            var culqiError = errorToken.Type == JTokenType.String
-                ? CulqiError.FromJson(response.Content)
-                : CulqiError.FromJson(errorToken.ToString());
+            var culqiError = CulqiError.FromJson(response.Content);
 
             culqiError.CulqiResponse = response;
 
