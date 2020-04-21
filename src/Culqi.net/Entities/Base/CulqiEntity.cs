@@ -18,7 +18,7 @@ namespace Culqi.Entities.Base
         private JObject rawJObject;
 
         [JsonIgnore]
-        public JObject RawJObject
+        protected JObject RawJObject
         {
             get
             {
@@ -35,11 +35,12 @@ namespace Culqi.Entities.Base
                 return rawJObject;
             }
 
-            protected set
+            set
             {
                 rawJObject = value;
             }
         }
+
 
         [JsonIgnore]
         public CulqiResponse CulqiResponse { get; set; }
@@ -49,7 +50,7 @@ namespace Culqi.Entities.Base
             return JsonUtils.DeserializeObject<IHasObject>(value, CulqiConfiguration.SerializerSettings);
         }
 
-        public static T FromJson<T>(string value) where T : ICulqiEntity
+        internal static T FromJson<T>(string value) where T : ICulqiEntity
         {
             return JsonUtils.DeserializeObject<T>(value, CulqiConfiguration.SerializerSettings);
         }

@@ -54,9 +54,11 @@ namespace Culqi.Infrastructure.FormEncoding
 
         public static string CreateQueryString(IEnumerable<KeyValuePair<string, string>> nameValueCollection)
         {
+            var parameters = nameValueCollection.ToList();
+            parameters.Remove(parameters.Where(x => x.Key == "creation_date" && x.Value == "0").FirstOrDefault());
             return string.Join(
                 "&",
-                nameValueCollection.Select(kvp => $"{UrlEncode(kvp.Key)}={UrlEncode(kvp.Value)}"));
+                parameters.Select(kvp => $"{UrlEncode(kvp.Key)}={UrlEncode(kvp.Value)}"));
         }
 
         private static string UrlEncode(string value)
@@ -105,8 +107,8 @@ namespace Culqi.Infrastructure.FormEncoding
 
                 case DateTime dateTime:
                     flatParams = SingleParam(
-                        keyPrefix,
-                        dateTime.ConvertDateTimeToEpoch().ToString(CultureInfo.InvariantCulture));
+                    keyPrefix,
+                    dateTime.ConvertDateTimeToEpoch().ToString(CultureInfo.InvariantCulture));
                     break;
 
                 case Enum e:
