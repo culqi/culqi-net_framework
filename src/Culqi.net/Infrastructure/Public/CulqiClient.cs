@@ -106,12 +106,9 @@ namespace Culqi.Infrastructure.Public
 
             culqiError.CulqiResponse = response;
 
-            return new CulqiException(
-                response.StatusCode,
-                culqiError,
-                culqiError.Message ?? culqiError.UserMessage)
+            return new CulqiException(response.StatusCode, culqiError, culqiError.Message ?? culqiError.UserMessage)
             {
-                CulqiResponse = response,
+                CulqiResponse = response
             };
         }
 

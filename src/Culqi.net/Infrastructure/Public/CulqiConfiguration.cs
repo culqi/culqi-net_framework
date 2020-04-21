@@ -23,7 +23,7 @@ namespace Culqi
             CulqiNetVersion = new AssemblyName(typeof(CulqiConfiguration).GetTypeInfo().Assembly.FullName).Version.ToString(3);
         }
 
-        public static string PublicApiKey
+        public static string ApiKey
         {
             get
             {
@@ -65,7 +65,7 @@ namespace Culqi
 
         public static string CulqiNetVersion { get; }
 
-        public static JsonSerializerSettings DefaultSerializerSettings()
+        private static JsonSerializerSettings DefaultSerializerSettings()
         {
             return new JsonSerializerSettings
             {
@@ -74,12 +74,13 @@ namespace Culqi
                     new CulqiObjectConverter(),
                 },
                 DateParseHandling = DateParseHandling.None,
+                NullValueHandling = NullValueHandling.Ignore
             };
         }
 
         private static CulqiClient BuildDefaultCulqiClient()
         {
-            if (PublicApiKey != null && PublicApiKey.Length == 0)
+            if (ApiKey != null && ApiKey.Length == 0)
             {
                 var message = "Your Public API key is invalid, as it is an empty string. You can "
                     + "double-check your API key from the Culqi Dashboard. See "
@@ -88,7 +89,7 @@ namespace Culqi
                 throw new CulqiException(message);
             }
 
-            if (PublicApiKey != null && StringUtils.ContainsWhitespace(PublicApiKey))
+            if (ApiKey != null && StringUtils.ContainsWhitespace(ApiKey))
             {
                 var message = "Your Public API key is invalid, as it contains whitespace. You can "
                     + "double-check your API key from the Culqi Dashboard. See "
@@ -97,7 +98,7 @@ namespace Culqi
                 throw new CulqiException(message);
             }
 
-            return new CulqiClient(PublicApiKey, new CulqiHttpClient(httpClient: null));
+            return new CulqiClient(ApiKey, new CulqiHttpClient(httpClient: null));
         }
     }
 }

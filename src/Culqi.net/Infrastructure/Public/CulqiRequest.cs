@@ -62,7 +62,7 @@ namespace Culqi.Infrastructure.Public
             if (client.ApiKey == null)
             {
                 var message = "No API key provided. Set your public API key using "
-                    + "`CulqiConfiguration.PublicApiKey = \"<API-KEY>\"`. You can generate API keys "
+                    + "`CulqiConfiguration.ApiKey = \"<API-KEY>\"`. You can generate API keys "
                     + "from the Culqi Dashboard. See "
                     + "https://www.culqi.com/api/#/autenticacion for details or contact support "
                     + "at https://culqi.zendesk.com/hc/es/requests/new if you have any questions.";
@@ -74,7 +74,7 @@ namespace Culqi.Infrastructure.Public
 
         private static HttpContent BuildContent(HttpMethod method, BaseOptions options)
         {
-            if (method != HttpMethod.Post)
+            if (method != HttpMethod.Post && method.ToString() != "PATCH")
             {
                 return null;
             }
