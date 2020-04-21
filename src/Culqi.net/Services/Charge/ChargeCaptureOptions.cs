@@ -8,7 +8,5 @@ namespace Culqi
 {
     public class ChargeCaptureOptions : BaseOptions
     {
-        [JsonProperty("capture")]
-        public bool Captured { get; set; }
     }
 }

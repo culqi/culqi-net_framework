@@ -27,12 +27,12 @@ namespace Culqi
         {
         }
 
-        public override string BasePath => "/charges";
+        protected override string BasePath => "/charges";
 
 
         public virtual Task<Charge> Capture(string chargeId, ChargeCaptureOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return RequestAsync(HttpMethod.Post, $"{InstanceUrl(chargeId)}/capture", options, requestOptions, cancellationToken);
+            return Request(HttpMethod.Post, $"{InstanceUrl(chargeId)}/capture", options, requestOptions, cancellationToken);
         }
 
         public virtual Task<Charge> Create(ChargeCreateOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
@@ -49,18 +49,6 @@ namespace Culqi
         {
             return ListEntities(options, requestOptions, cancellationToken);
         }
-
-#if !NET45
-        public IAsyncEnumerable<Charge> ListAutoPaging(ChargeListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
-        {
-            return ListEntitiesAutoPaging(listOptions, requestOptions, cancellationToken);
-        }
-#else
-        public IEnumerable<Charge> ListAutoPaging(ChargeListOptions listOptions = null, RequestOptions requestOptions = null)
-        {
-            return ListEntitiesAutoPaging(listOptions, requestOptions);
-        }
-#endif
 
         public virtual Task<Charge> Update(string chargeId, ChargeUpdateOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
