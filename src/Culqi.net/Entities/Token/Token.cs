@@ -43,6 +43,6 @@ namespace Culqi
         public Client Client { get; set; }
 
         [JsonProperty("metadata")]
-        public object Metadata { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
     }
 }

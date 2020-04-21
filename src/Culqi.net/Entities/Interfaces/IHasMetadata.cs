@@ -6,6 +6,6 @@ namespace Culqi.Entities.Interfaces
 {
     public interface IHasMetadata
     {
-        object Metadata { get; set; }
+        Dictionary<string, string> Metadata { get; set; }
     }
 }

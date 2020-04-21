@@ -71,7 +71,7 @@ namespace Culqi
         public string ReferenceCode { get; set; }
 
         [JsonProperty("metadata")]
-        public object Metadata { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
 
         [JsonProperty("total_fee")]
         public long TotalFee { get; set; }
