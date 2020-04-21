@@ -15,31 +15,6 @@ namespace Culqi.Services.Base
 
         [JsonExtensionData]
         protected IDictionary<string, object> ExtraParams { get; set; }
-            = new Dictionary<string, object>();
-
-        public void AddExpand(string value)
-        {
-            if (this.Expand == null)
-            {
-                this.Expand = new List<string>();
-            }
-
-            this.Expand.Add(value);
-        }
-
-        public void AddRangeExpand(IEnumerable<string> values)
-        {
-            if (this.Expand == null)
-            {
-                this.Expand = new List<string>();
-            }
-
-            this.Expand.AddRange(values);
-        }
-
-        public void AddExtraParam(string key, object value)
-        {
-            this.ExtraParams.Add(key, value);
-        }
+            = new Dictionary<string, object>();        
     }
 }
