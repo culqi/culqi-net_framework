@@ -1,5 +1,6 @@
 ﻿using Culqi.Entities.Base;
 using Culqi.Entities.Interfaces;
+using Culqi.Infrastructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Culqi
         public string ChargeId { get; set; }
 
         [JsonProperty("creation_date")]
+        [JsonConverter(typeof(DateTimeConverter))]
         public DateTime CreationDate { get; set; }
 
         [JsonProperty("amount")]
