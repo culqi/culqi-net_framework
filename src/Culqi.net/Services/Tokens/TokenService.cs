@@ -5,13 +5,14 @@ using Culqi.Services.Common;
 using Culqi.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Culqi
 {
-    public class TokenService : Service<Token>, 
+    public class TokenService : Service<Token>,
         ICreatable<Token, TokenCreateOptions>, 
         IRetrievable<Token, TokenGetOptions>, 
         IListable<Token, TokenListOptions>,
@@ -25,7 +26,7 @@ namespace Culqi
         {
         }
 
-        public override string BasePath => "/tokens";
+        protected override string BasePath => "/tokens";
 
         public virtual Task<Token> Create(TokenCreateOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
@@ -37,24 +38,12 @@ namespace Culqi
             return GetEntity(tokenId, options, requestOptions, cancellationToken);
         }
 
-        public Task<CulqiList<Token>> List(TokenListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public virtual Task<CulqiList<Token>> List(TokenListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return ListEntities(listOptions, requestOptions, cancellationToken);
         }
 
-#if !NET45
-        public IAsyncEnumerable<Token> ListAutoPaging(TokenListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
-        {
-            return ListEntitiesAutoPaging(listOptions, requestOptions, cancellationToken);
-        }
-#else
-        public IEnumerable<Token> ListAutoPaging(TokenListOptions listOptions = null, RequestOptions requestOptions = null)
-        {
-            return ListEntitiesAutoPaging(listOptions, requestOptions);
-        }
-#endif
-
-        public Task<Token> Update(string id, TokenUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public virtual Task<Token> Update(string id, TokenUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return UpdateEntity(id, updateOptions, requestOptions, cancellationToken);
         }

@@ -9,14 +9,7 @@ namespace Culqi
 {
     public class TokenUpdateOptions : BaseOptions, IHasMetadata
     {
-
-        [JsonProperty("active")]
-        public bool Active { get; set; }
-
-        [JsonProperty("email")]
-        public string Email { get; set; }
-
         [JsonProperty("metadata")]
-        public object Metadata { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
     }
 }

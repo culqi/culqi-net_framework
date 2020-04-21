@@ -1,4 +1,5 @@
-﻿using Culqi.Infrastructure.JsonConverters;
+﻿using Culqi.Entities.Interfaces;
+using Culqi.Infrastructure.JsonConverters;
 using Culqi.Services.Base;
 using Newtonsoft.Json;
 using System;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Culqi
 {
-    public class TokenCreateOptions : BaseOptions
+    public class TokenCreateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("card_number")]
         public string CardNumber { get; set; }
@@ -25,6 +26,6 @@ namespace Culqi
         public string Email { get; set; }
 
         [JsonProperty("metadata")]
-        public object Metadata { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
     }
 }
