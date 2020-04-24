@@ -32,9 +32,9 @@ namespace Culqi
             return CreateEntity(options, requestOptions, cancellationToken);
         }
 
-        public virtual Task<Refund> Get(string tokenId, RefundGetOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public virtual Task<Refund> Get(string refundId, RefundGetOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return GetEntity(tokenId, options, requestOptions, cancellationToken);
+            return GetEntity(refundId, options, requestOptions, cancellationToken);
         }
 
         public virtual Task<CulqiList<Refund>> List(RefundListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
@@ -42,9 +42,9 @@ namespace Culqi
             return ListEntities(listOptions, requestOptions, cancellationToken);
         }
 
-        public virtual Task<Refund> Update(string id, RefundUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public virtual Task<Refund> Update(string refundId, RefundUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return UpdateEntity(id, updateOptions, requestOptions, cancellationToken);
+            return UpdateEntity(refundId, updateOptions, requestOptions, cancellationToken);
         }
     }
 }

@@ -43,9 +43,9 @@ namespace Culqi
             return ListEntities(listOptions, requestOptions, cancellationToken);
         }
 
-        public virtual Task<Token> Update(string id, TokenUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public virtual Task<Token> Update(string tokenId, TokenUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return UpdateEntity(id, updateOptions, requestOptions, cancellationToken);
+            return UpdateEntity(tokenId, updateOptions, requestOptions, cancellationToken);
         }
     }
 }

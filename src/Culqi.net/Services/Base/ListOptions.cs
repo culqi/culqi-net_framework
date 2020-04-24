@@ -8,7 +8,7 @@ namespace Culqi.Services.Base
     public class ListOptions : BaseOptions
     {
         [JsonProperty("creation_date")]
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
         [JsonProperty("limit")]
         public long? Limit { get; set; }

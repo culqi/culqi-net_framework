@@ -33,9 +33,9 @@ namespace Culqi
             return CreateEntity(options, requestOptions, cancellationToken);
         }
 
-        public virtual Task<Customer> Get(string tokenId, CustomerGetOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public virtual Task<Customer> Get(string customerId, CustomerGetOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return GetEntity(tokenId, options, requestOptions, cancellationToken);
+            return GetEntity(customerId, options, requestOptions, cancellationToken);
         }
 
         public virtual Task<CulqiList<Customer>> List(CustomerListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
@@ -43,9 +43,9 @@ namespace Culqi
             return ListEntities(listOptions, requestOptions, cancellationToken);
         }
 
-        public virtual Task<Customer> Update(string id, CustomerUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public virtual Task<Customer> Update(string customerId, CustomerUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return UpdateEntity(id, updateOptions, requestOptions, cancellationToken);
+            return UpdateEntity(customerId, updateOptions, requestOptions, cancellationToken);
         }
 
         public virtual Task<Customer> Delete(string customerId, CustomerDeleteOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
