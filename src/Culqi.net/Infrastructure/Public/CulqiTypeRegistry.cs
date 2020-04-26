@@ -11,15 +11,14 @@ namespace Culqi.Infrastructure.Public
     {
         public static readonly IReadOnlyDictionary<string, Type> ObjectsToTypes = new ReadOnlyDictionary<string, Type>(new Dictionary<string, Type>
         {
-            //{ "card", typeof(Card) },
+            { "card", typeof(Card) },
             { "charge", typeof(Charge) },
-            //{ "customer", typeof(Customer) },
-            //{ "discount", typeof(Discount) },
-            //{ "event", typeof(Event) },            
-            //{ "order", typeof(Order) },
-            //{ "plan", typeof(Plan) },
-            //{ "refund", typeof(Refund) },
-            //{ "subscription", typeof(Subscription) },
+            { "customer", typeof(Customer) },
+            { "event", typeof(Event) },            
+            { "order", typeof(Order) },
+            { "plan", typeof(Plan) },
+            { "refund", typeof(Refund) },
+            { "subscription", typeof(Subscription) },
             { "token", typeof(Token) }            
         });
 
