@@ -12,6 +12,7 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
+using IAnyOf = Culqi.Services.Interfaces.IAnyOf;
 
 namespace Culqi.Infrastructure.FormEncoding
 {

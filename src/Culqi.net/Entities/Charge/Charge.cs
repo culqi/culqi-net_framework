@@ -77,7 +77,7 @@ namespace Culqi
         public long TotalFee { get; set; }
 
         [JsonProperty("fee_details")]
-        public ChargeFeeDetails FeeDetails { get; set; }
+        public FeeDetails FeeDetails { get; set; }
 
         [JsonProperty("paid")]
         public bool Paid { get; set; }

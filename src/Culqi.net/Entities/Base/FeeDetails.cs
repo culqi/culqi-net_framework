@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Culqi.Entities
 {
-    public class ChargeFeeDetails : CulqiEntity<ChargeFeeDetails>
+    public class FeeDetails : CulqiEntity<FeeDetails>
     {
         [JsonProperty("fixed_fee")]
         public FixedFee FixedFee { get; set; }
