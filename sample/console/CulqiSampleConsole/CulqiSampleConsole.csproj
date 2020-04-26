@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Culqi.net\Culqi.net.csproj" />
+    <ProjectReference Include="..\..\..\src\Culqi.net\Culqi.net.csproj" />
   </ItemGroup>
 
 </Project>

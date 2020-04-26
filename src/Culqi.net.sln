@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Culqi.net", "Culqi.net\Culqi.net.csproj", "{837E7CE2-1F22-4C3F-80C3-DD7CF4621FB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CulqiSample", "..\sample\CulqiSample\CulqiSample.csproj", "{E7EBCC72-DF9C-46B8-A745-CECC86B87F91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CulqiSampleConsole", "..\sample\console\CulqiSampleConsole\CulqiSampleConsole.csproj", "{E7EBCC72-DF9C-46B8-A745-CECC86B87F91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
