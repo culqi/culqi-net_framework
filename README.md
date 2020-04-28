@@ -159,13 +159,13 @@ Willy Aguirre ([@marti1125](https://github.com/marti1125) - Team Culqi)
 
 Wilson Vargas ([@wilsonvargas](https://github.com/wilsonvargas))
 
+Para cualquier solicitud, error o comentario, por favor [abre un issue][issues] o [envía un pull request][pr].
+
 ## Licencia
 
 El código fuente de culqi-net está distribuido bajo MIT License, revisar el archivo
 [LICENSE][license].
 
-
-Para cualquier solicitud, error o comentario, por favor [abre un issue][issues] o [envía un pull request][pr].
 
 [pr]: https://github.com/culqi/culqi-net/pulls
 [issues]: https://github.com/culqi/culqi-net/issues
