@@ -1,5 +1,5 @@
 # Culqi.net
-La biblioteca oficial de [Culqi][culqiwebsite] para .NET, compatible con .Net Standard 2.0+, .Net Core 2.0+ y .Net Framework 4.5+
+Biblioteca oficial de [Culqi][culqiwebsite] para .NET, compatible con .Net Standard 2.0+, .Net Core 2.0+ y .Net Framework 4.5+
 
 | Versión actual|Culqi API|
 |----|----|
