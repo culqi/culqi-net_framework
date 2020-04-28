@@ -151,7 +151,7 @@ Refund refund = await refundService.Create(refundOptions);
 ```
 
 ## Documentación
-¿Necesitas más información para integrar `culqi-net`? La documentación completa se encuentra en [https://culqi.com/docs/][documentation]
+¿Necesitas más información para integrar `Culqi.net`? La documentación completa se encuentra en [https://culqi.com/docs/][documentation]
 
 ## Colaboradores
 
@@ -163,7 +163,7 @@ Para cualquier solicitud, error o comentario, por favor [abre un issue][issues] 
 
 ## Licencia
 
-El código fuente de culqi-net está distribuido bajo MIT License, revisar el archivo
+El código fuente de Culqi.net está distribuido bajo MIT License, revisar el archivo
 [LICENSE][license].
 
 
