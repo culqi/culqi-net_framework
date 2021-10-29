@@ -155,6 +155,33 @@ Dictionary<string, object> refund = new Dictionary<string, object>
 return new Refund(security).Create(refund);
 ```
 
+#### Crear Orden
+
+```cs
+Dictionary<string, object> client_details = new Dictionary<string, object>
+{
+	{"email", "test"+GetRandomString()+"@culqi.com"},
+	{"first_name", "Test"},
+	{"last_name", "Culqi"},
+	{"phone_number", 99004356}
+};
+Dictionary<string, object> metadata = new Dictionary<string, object>
+{
+	{"others_id", "9092"}
+};
+Dictionary<string, object> map = new Dictionary<string, object>
+{
+	{"amount", 1000 },
+	{"currency_code", "PEN" },
+	{"description", "Orden de Prueba" },
+	{"order_number", "id-"+GetRandomString() },
+	{"expiration_date", 2550643697 },
+	{"client_details", client_details },
+	{"meta_data", metadata }
+};
+var order_created = new Order(security).Create(map);
+```
+
 ## Documentación
 ¿Necesitas más información para integrar `culqi-net`? La documentación completa se encuentra en [https://culqi.com/docs/](https://culqi.com/docs/)
 

@@ -242,6 +242,45 @@ namespace culqi.net
 			Assert.AreEqual("refund", (string)json_object["object"]);
 		}
 
+		protected string CreateOrder()
+		{
+			Dictionary<string, object> client_details = new Dictionary<string, object>
+			{
+				{"email", "test"+GetRandomString()+"@culqi.com"},
+				{"first_name", "Test"},
+				{"last_name", "Culqi"},
+				{"phone_number", 99004356}
+			};
+
+			Dictionary<string, object> metadata = new Dictionary<string, object>
+			{
+				{"others_id", "9092"}
+			};
+
+			Dictionary<string, object> map = new Dictionary<string, object>
+			{
+				{"amount", 1000 },
+				{"currency_code", "PEN" },
+				{"description", "Orden de Prueba" },
+				{"order_number", "id-"+GetRandomString() },
+				{"expiration_date", 2550643697 },
+				{"client_details", client_details },
+				{"meta_data", metadata }
+			};
+
+			return new Order(security).Create(map);
+		}
+
+		[Test]
+		public void ValidCreateOrder()
+		{
+			string data = CreateOrder();
+
+			var json_object = JObject.Parse(data);
+
+			Assert.AreEqual("order", (string)json_object["object"]);
+		}
+
 		// Consultar Recursos
 
 		[Test]
@@ -314,6 +353,16 @@ namespace culqi.net
 			Assert.AreEqual("refund", (string)json_refund["object"]);
 		}
 
+		[Test]
+		public void findOrder()
+		{
+			string data = CreateOrder();
+			var json_object = JObject.Parse(data);
+			string order = new Order(security).Get((string)json_object["id"]);
+			var json_order = JObject.Parse(order);
+			Assert.AreEqual("order", (string)json_order["object"]);
+		}
+
 		// Eliminar Recursos
 
 		[Test]
@@ -354,6 +403,16 @@ namespace culqi.net
 			string customer = new Customer(security).Delete((string)json_object["id"]);
 			var json_customer = JObject.Parse(customer);
 			Assert.True((bool)json_customer["deleted"]);
+		}
+
+		[Test]
+		public void deleteOrder()
+		{
+			string data = CreateOrder();
+			var json_object = JObject.Parse(data);
+			string order = new Order(security).Delete((string)json_object["id"]);
+			var json_order = JObject.Parse(order);
+			Assert.True((bool)json_order["deleted"]);
 		}
 
 	}
