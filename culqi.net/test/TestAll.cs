@@ -134,5 +134,19 @@ namespace culqi.net
 			Assert.True(valid);
 		}
 
+		[Test]
+		public void allOrders()
+		{
+			string orders = new Order(security).List(filter);
+			var json_orders = JObject.Parse(orders);
+			List<Dictionary<string, object>> data = json_orders["data"].ToObject<List<Dictionary<string, object>>>();
+			bool valid = false;
+			if (data.Count >= 0)
+			{
+				valid = true;
+			}
+			Assert.True(valid);
+		}
+
 	}
 }
