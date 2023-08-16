@@ -1,5 +1,5 @@
-# culqi-net
-Una implementación de Culqi para .NET
+# culqi-net-framework
+Una implementación de Culqi para .NET FrameWork
 
 ## Requisitos
 
