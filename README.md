@@ -1,34 +1,47 @@
 # culqi-net
 Una implementación de Culqi para .NET
 
-| Versión actual|Culqi API|
-|----|----|
-| 0.1 (2017-02-19) |[v2](https://culqi.com/api/)|
-
 ## Requisitos
 
-- NET Framework 4.*
+- NET Framework 3.5 +
 - Credenciales de comercio en Culqi (1).
+- 
+## Instalación
 
-## Ejemplos
+Ejecuta los siguientes comandos usando la consola de comandos NuGet:
 
-#### Generar nombres aleatorios
-
-```cs
-protected static string GetRandomString()
-{
-	string path = Path.GetRandomFileName();
-	path = path.Replace(".", "");
-	return path;
-}
+```bash
+Install-Package RestSharp
+Install-Package Newtonsoft.Json
 ```
 
-#### Inicialización
+
+## Configuracion
+
+Para empezar a enviar peticiones al API de Culqi debes configurar tu llave pública (pk), llave privada (sk). Para habilitar encriptación de payload debes configurar tu rsa_id y rsa_public_key.
 
 ```cs
-Security security = new Security();
-security.public_key = "{LLAVE PUBLICA}";
-security.secret_key = "{LLAVE SECRETA}";
+security = new Security();
+        security.public_key = "pk_test_e94078b9b248675d";
+        security.secret_key = "sk_test_c2267b5b262745f0";
+        security.rsa_id = "de35e120-e297-4b96-97ef-10a43423ddec";
+
+        security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDswQycch0x/7GZ0oFojkWCYv+gr5CyfBKXc3Izq+btIEMCrkDrIsz4Lnl5E3FSD7/htFn1oE84SaDKl5DgbNoev3pMC7MDDgdCFrHODOp7aXwjG8NaiCbiymyBglXyEN28hLvgHpvZmAn6KFo0lMGuKnz8HiuTfpBl6HpD6+02SQIDAQAB";
+
+```
+
+### Encriptar payload
+
+Para encriptar el payload necesitas agregar el parámetros **options** que contiene tu id y llave RSA.
+
+Ejemplo
+
+```python
+  public ResponseCulqi CreateTokenEncrypt()
+    {
+        return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
+    }
+
 ```
 
 #### Crear Token
@@ -155,14 +168,34 @@ Dictionary<string, object> refund = new Dictionary<string, object>
 return new Refund(security).Create(refund);
 ```
 
+## Pruebas
+
+En la caperta **/test** econtraras ejemplo para crear un token, charge,plan, órdenes, card, suscupciones, etc.
+
+> Recuerda que si quieres probar tu integración, puedes utilizar nuestras [tarjetas de prueba.](https://docs.culqi.com/es/documentacion/pagos-online/tarjetas-de-prueba/)
+
+### Ejemplo Prueba Token
+
+```cs
+ string data = culqiCRUD.CreateToken().body;
+ var json_object = JObject.Parse(data);
+ Assert.AreEqual("token",(string)json_object["object"]);
+
+```
+
 ## Documentación
-¿Necesitas más información para integrar `culqi-net`? La documentación completa se encuentra en [https://culqi.com/docs/](https://culqi.com/docs/)
+
+- [Referencia de API](https://apidocs.culqi.com/)
+- [Demo Checkout V4 + Culqi 3DS]([https://github.com/culqi/culqi-python-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-net_framework))
+- [Wiki](https://github.com/culqi/culqi-python/wiki)
+
+## Changelog
+
+Todos los cambios en las versiones de esta biblioteca están listados en
+[CHANGELOG.md](CHANGELOG.md).
 
 ## Autor
-
-Willy Aguirre ([@marti1125](https://github.com/marti1125) - Team Culqi)
+Team Culqi
 
 ## Licencia
-
-El código fuente de culqi-net está distribuido bajo MIT License, revisar el archivo
-[LICENSE](https://github.com/culqi/culqi-net/blob/master/LICENSE).
+El código fuente de culqi-python está distribuido bajo MIT License, revisar el archivo LICENSE.
