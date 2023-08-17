@@ -1,11 +1,22 @@
-# culqi-net-framework
-Una implementación de Culqi para .NET FrameWork
+# Culqi-Net-Framework
+Nuestra Biblioteca NET FRAMEWORK oficial de CULQI, es compatible con la v2.0 del Culqi API, con el cual tendrás la posibilidad de realizar cobros con tarjetas de débito y crédito, Yape, PagoEfectivo, billeteras móviles y Cuotéalo con solo unos simples pasos de configuración.
+
+Nuestra biblioteca te da la posibilidad de capturar el `status_code` de la solicitud HTTP que se realiza al API de Culqi, asi como el `response` que contiene el cuerpo de la respuesta obtenida.
 
 ## Requisitos
 
-- NET Framework 3.5 +
-- Credenciales de comercio en Culqi (1).
-- 
+- NET FrameWork 3.6+
+* Afiliate [aquí](https://afiliate.culqi.com/).
+* Si vas a realizar pruebas obtén tus llaves desde [aquí](https://integ-panel.culqi.com/#/registro), si vas a realizar transacciones reales obtén tus llaves desde [aquí](https://panel.culqi.com/#/registro).
+
+> Recuerda que para obtener tus llaves debes ingresar a tu CulqiPanel > Desarrollo > ***API Keys***.
+
+![alt tag](http://i.imgur.com/NhE6mS9.png)
+
+> Recuerda que las credenciales son enviadas al correo que registraste en el proceso de afiliación.
+
+* Para encriptar el payload debes generar un id y llave RSA  ingresando a CulqiPanel > Desarrollo  > RSA Keys
+  
 ## Instalación
 
 Ejecuta los siguientes comandos usando la consola de comandos NuGet:
@@ -186,7 +197,7 @@ En la caperta **/test** econtraras ejemplo para crear un token, charge,plan, ór
 ## Documentación
 
 - [Referencia de API](https://apidocs.culqi.com/)
-- [Demo Checkout V4 + Culqi 3DS]([https://github.com/culqi/culqi-python-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-net_framework))
+- [Demo Checkout V4 + Culqi 3DS]([[https://github.com/culqi/culqi-python-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)]([https://github.com/culqi/culqi-net_framework](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)))
 - [Wiki](https://github.com/culqi/culqi-python/wiki)
 
 ## Changelog
