@@ -1,34 +1,57 @@
-# culqi-net
-Una implementación de Culqi para .NET
+# Culqi-Net-Framework
+Nuestra Biblioteca NET FRAMEWORK oficial, es compatible con la v2.0 del Culqi API, con el cual tendrás la posibilidad de realizar cobros con tarjetas de débito y crédito, Yape, PagoEfectivo, billeteras móviles y Cuotéalo con solo unos simples pasos de configuración.
 
-| Versión actual|Culqi API|
-|----|----|
-| 0.1 (2017-02-19) |[v2](https://culqi.com/api/)|
+Nuestra biblioteca te da la posibilidad de capturar el `status_code` de la solicitud HTTP que se realiza al API de Culqi, así como el `response` que contiene el cuerpo de la respuesta obtenida.
 
 ## Requisitos
 
-- NET Framework 4.*
-- Credenciales de comercio en Culqi (1).
+- NET FrameWork 3.6+
+* Afiliate [aquí](https://afiliate.culqi.com/).
+* Si vas a realizar pruebas obtén tus llaves desde [aquí](https://integ-panel.culqi.com/#/registro), si vas a realizar transacciones reales obtén tus llaves desde [aquí](https://panel.culqi.com/#/registro).
 
-## Ejemplos
+> Recuerda que para obtener tus llaves debes ingresar a tu CulqiPanel > Desarrollo > ***API Keys***.
 
-#### Generar nombres aleatorios
+![alt tag](http://i.imgur.com/NhE6mS9.png)
 
-```cs
-protected static string GetRandomString()
-{
-	string path = Path.GetRandomFileName();
-	path = path.Replace(".", "");
-	return path;
-}
+> Recuerda que las credenciales son enviadas al correo que registraste en el proceso de afiliación.
+
+* Para encriptar el payload debes generar un id y llave RSA  ingresando a CulqiPanel > Desarrollo  > RSA Keys.
+  
+## Instalación
+
+Ejecuta los siguientes comandos usando la consola de comandos NuGet:
+
+```bash
+Install-Package RestSharp
+Install-Package Newtonsoft.Json
 ```
 
-#### Inicialización
+
+## Configuracion
+
+Para empezar a enviar peticiones al API de Culqi debes configurar tu llave pública (pk), llave privada (sk). Para habilitar encriptación de payload debes configurar tu rsa_id y rsa_public_key.
 
 ```cs
-Security security = new Security();
-security.public_key = "{LLAVE PUBLICA}";
-security.secret_key = "{LLAVE SECRETA}";
+security = new Security();
+security.public_key = "pk_test_e94078b9b248675d";
+security.secret_key = "sk_test_c2267b5b262745f0";
+security.rsa_id = "de35e120-e297-4b96-97ef-10a43423ddec";
+
+security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDswQycch0x/7GZ0oFojkWCYv+gr5CyfBKXc3Izq+btIEMCrkDrIsz4Lnl5E3FSD7/htFn1oE84SaDKl5DgbNoev3pMC7MDDgdCFrHODOp7aXwjG8NaiCbiymyBglXyEN28hLvgHpvZmAn6KFo0lMGuKnz8HiuTfpBl6HpD6+02SQIDAQAB";
+
+```
+
+### Encriptar payload
+
+Para encriptar el payload necesitas agregar el parámetros que contiene tu id y llave RSA.
+
+Ejemplo
+
+```cs
+public ResponseCulqi CreateTokenEncrypt()
+{
+	return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
+}
 ```
 
 #### Crear Token
@@ -155,14 +178,34 @@ Dictionary<string, object> refund = new Dictionary<string, object>
 return new Refund(security).Create(refund);
 ```
 
+## Pruebas
+
+En la caperta **/test** econtraras ejemplo para crear un token, charge,plan, órdenes, card, suscupciones, etc.
+
+> Recuerda que si quieres probar tu integración, puedes utilizar nuestras [tarjetas de prueba.](https://docs.culqi.com/es/documentacion/pagos-online/tarjetas-de-prueba/)
+
+### Ejemplo Prueba Token
+
+```cs
+ string data = culqiCRUD.CreateToken().body;
+ var json_object = JObject.Parse(data);
+ Assert.AreEqual("token",(string)json_object["object"]);
+
+```
+
 ## Documentación
-¿Necesitas más información para integrar `culqi-net`? La documentación completa se encuentra en [https://culqi.com/docs/](https://culqi.com/docs/)
+
+- [Referencia de API](https://apidocs.culqi.com/)
+- [Demo Checkout V4 + Culqi 3DS](https://github.com/culqi/culqi-netframework-demo-checkoutv4-culqi3ds)
+- [Wiki](https://github.com/culqi/culqi-python/wiki)
+
+## Changelog
+
+Todos los cambios en las versiones de esta biblioteca están listados en
+[CHANGELOG.md](CHANGELOG.md).
 
 ## Autor
-
-Willy Aguirre ([@marti1125](https://github.com/marti1125) - Team Culqi)
+Team Culqi
 
 ## Licencia
-
-El código fuente de culqi-net está distribuido bajo MIT License, revisar el archivo
-[LICENSE](https://github.com/culqi/culqi-net/blob/master/LICENSE).
+El código fuente de culqi-net-framework está distribuido bajo MIT License, revisar el archivo LICENSE.
