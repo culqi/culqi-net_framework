@@ -1,7 +1,7 @@
 # Culqi-Net-Framework
-Nuestra Biblioteca NET FRAMEWORK oficial de CULQI, es compatible con la v2.0 del Culqi API, con el cual tendrás la posibilidad de realizar cobros con tarjetas de débito y crédito, Yape, PagoEfectivo, billeteras móviles y Cuotéalo con solo unos simples pasos de configuración.
+Nuestra Biblioteca NET FRAMEWORK oficial, es compatible con la v2.0 del Culqi API, con el cual tendrás la posibilidad de realizar cobros con tarjetas de débito y crédito, Yape, PagoEfectivo, billeteras móviles y Cuotéalo con solo unos simples pasos de configuración.
 
-Nuestra biblioteca te da la posibilidad de capturar el `status_code` de la solicitud HTTP que se realiza al API de Culqi, asi como el `response` que contiene el cuerpo de la respuesta obtenida.
+Nuestra biblioteca te da la posibilidad de capturar el `status_code` de la solicitud HTTP que se realiza al API de Culqi, así como el `response` que contiene el cuerpo de la respuesta obtenida.
 
 ## Requisitos
 
@@ -15,7 +15,7 @@ Nuestra biblioteca te da la posibilidad de capturar el `status_code` de la solic
 
 > Recuerda que las credenciales son enviadas al correo que registraste en el proceso de afiliación.
 
-* Para encriptar el payload debes generar un id y llave RSA  ingresando a CulqiPanel > Desarrollo  > RSA Keys
+* Para encriptar el payload debes generar un id y llave RSA  ingresando a CulqiPanel > Desarrollo  > RSA Keys.
   
 ## Instalación
 
@@ -47,12 +47,11 @@ Para encriptar el payload necesitas agregar el parámetros que contiene tu id y 
 
 Ejemplo
 
-```python
-  public ResponseCulqi CreateTokenEncrypt()
-    {
-        return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
-    }
-
+```cs
+public ResponseCulqi CreateTokenEncrypt()
+{
+	return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
+}
 ```
 
 #### Crear Token
@@ -197,7 +196,7 @@ En la caperta **/test** econtraras ejemplo para crear un token, charge,plan, ór
 ## Documentación
 
 - [Referencia de API](https://apidocs.culqi.com/)
-- [Demo Checkout V4 + Culqi 3DS]([[https://github.com/culqi/culqi-python-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)]([https://github.com/culqi/culqi-net_framework](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)))
+- [Demo Checkout V4 + Culqi 3DS](https://github.com/culqi/culqi-netframework-demo-checkoutv4-culqi3ds)
 - [Wiki](https://github.com/culqi/culqi-python/wiki)
 
 ## Changelog
