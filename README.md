@@ -109,7 +109,7 @@ string charge_created = new Charge(security).Create(charge);
 
 Solicita la devolución de las compras de tus clientes (parcial o total) de forma gratuita a través del API y CulqiPanel. 
 
-Las devoluciones pueden ser creados vía [API de cargo](https://apidocs.culqi.com/#tag/Devoluciones/operation/crear-devolucion).
+Las devoluciones pueden ser creados vía [API de devolución](https://apidocs.culqi.com/#tag/Devoluciones/operation/crear-devolucion).
 
 ```cs
 var json_charge = JObject.Parse(charge_created);
