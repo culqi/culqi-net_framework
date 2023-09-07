@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "bm0plb3NXQuSXE45L9tEhDG0yGkxiwxKnPriuBtBWDezXc4nxRwIxYLZZ4Nz4oQajOSZRPe5/Mz7GKv+30CTow==",
+  "success": true,
+  "projectFilePath": "E:\\culqi-net_framework\\culqi.net\\culqinet\\culqinet.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jordan\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Jordan\\.nuget\\packages\\restsharp\\110.2.0\\restsharp.110.2.0.nupkg.sha512",
+    "C:\\Users\\Jordan\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
+    "C:\\Users\\Jordan\\.nuget\\packages\\system.text.json\\7.0.2\\system.text.json.7.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -18,14 +18,14 @@ namespace culqi.net
 		public TestAll()
 		{
 			security = new Security();
-			security.public_key = "pk_test_90667d0a57d45c48";
-			security.secret_key = "sk_test_1573b0e8079863ff";
-		}
+            security.public_key = "pk_live_889113cd74ecfc55";
+            security.secret_key = "sk_live_34a07dcb6d4c7e39";
+        }
 
 		[Test]
-		public void allTokens()
+		public void Test01_AllTokens()
 		{	
-			string tokens = new Token(security).List(filter);
+			string tokens = new Token(security).List(filter).body;
 			JObject json_tokens = JObject.Parse(tokens);
 			List<Dictionary<string, object>>  data =  json_tokens["data"].ToObject<List<Dictionary<string, object>>>();
 			bool valid = false;
@@ -38,9 +38,9 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allCharges()
+		public void Test02_AllCharges()
 		{
-			string charges = new Charge(security).List(filter);
+			string charges = new Charge(security).List(filter).body;
 			JObject json_charges = JObject.Parse(charges);
 			List<Dictionary<string, object>> data = json_charges["data"].ToObject<List<Dictionary<string, object>>>();
 			bool valid = false;
@@ -52,9 +52,9 @@ namespace culqi.net
 		}
 
         [Test]
-        public void allOrders()
+        public void Test03_AllOrders()
         {
-            string orders = new Order(security).List(filter);
+            string orders = new Order(security).List(filter).body;
             JObject json_charges = JObject.Parse(orders);
             List<Dictionary<string, object>> data = json_charges["data"].ToObject<List<Dictionary<string, object>>>();
             bool valid = false;
@@ -66,9 +66,9 @@ namespace culqi.net
         }
 
         [Test]
-		public void allPlans()
+		public void Test04_AllPlans()
 		{
-			string plans = new Plan(security).List(filter);
+			string plans = new Plan(security).List(filter).body;
 			JObject json_plans = JObject.Parse(plans);
 			List<Dictionary<string, object>> data = json_plans["data"].ToObject<List<Dictionary<string, object>>>();
 			bool valid = false;
@@ -80,9 +80,9 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allSubscriptions()
+		public void Test05_AllSubscriptions()
 		{
-			string subscriptions = new Subscription(security).List(filter);
+			string subscriptions = new Subscription(security).List(filter).body;
 			JObject json_subscriptions = JObject.Parse(subscriptions);
 			List<Dictionary<string, object>> data = json_subscriptions["data"].ToObject<List<Dictionary<string, object>>>();
 			bool valid = false;
@@ -94,9 +94,9 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allCards()
+		public void Test06_AllCards()
 		{
-			string cards = new Card(security).List(filter);
+			string cards = new Card(security).List(filter).body;
 			JObject json_cards = JObject.Parse(cards);
 			List<Dictionary<string, object>> data = json_cards["data"].ToObject<List<Dictionary<string, object>>>();
 			bool valid = false;
@@ -108,9 +108,9 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allCustomers()
+		public void Test07_AllCustomers()
 		{
-			string customers = new Customer(security).List(filter);
+			string customers = new Customer(security).List(filter).body;
 			JObject json_customers = JObject.Parse(customers);
 			List<Dictionary<string, object>> data = json_customers["data"].ToObject<List<Dictionary<string, object>>>();
 			bool valid = false;
@@ -122,9 +122,9 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allTransfers()
+		public void Test08_AllTransfers()
 		{
-			string transfers = new Transfer(security).List(filter);
+			string transfers = new Transfer(security).List(filter).body;
 			JObject json_transfers = JObject.Parse(transfers);
 			List<Dictionary<string, object>> data = json_transfers["data"].ToObject<List<Dictionary<string, object>>>();
 			bool valid = false;
@@ -136,9 +136,9 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allRefunds()
+		public void Test09_AllRefunds()
 		{
-			string refunds = new Refund(security).List(filter);
+			string refunds = new Refund(security).List(filter).body;
 			var json_refunds = JObject.Parse(refunds);
 			List<Dictionary<string, object>> data = json_refunds["data"].ToObject<List<Dictionary<string, object>>>();
 			bool valid = false;
