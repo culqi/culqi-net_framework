@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibCulqi", "LibCulqi\LibCulqi.csproj", "{4229FD9D-365F-4028-A21C-E0E78691AF73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pruebas", "E:\culqi-net_framework\culqi.net\Pruebas\Pruebas.csproj", "{E6521B35-CF84-436B-96CA-4F1A1A9C76A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pruebas", "Pruebas2\Pruebas.csproj", "{E6EC150D-0199-4105-9FC5-8493B2EF8484}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{4229FD9D-365F-4028-A21C-E0E78691AF73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4229FD9D-365F-4028-A21C-E0E78691AF73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4229FD9D-365F-4028-A21C-E0E78691AF73}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6521B35-CF84-436B-96CA-4F1A1A9C76A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6521B35-CF84-436B-96CA-4F1A1A9C76A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6521B35-CF84-436B-96CA-4F1A1A9C76A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6521B35-CF84-436B-96CA-4F1A1A9C76A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6EC150D-0199-4105-9FC5-8493B2EF8484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6EC150D-0199-4105-9FC5-8493B2EF8484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6EC150D-0199-4105-9FC5-8493B2EF8484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6EC150D-0199-4105-9FC5-8493B2EF8484}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
