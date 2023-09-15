@@ -19,193 +19,191 @@ namespace culqi.net
             security.rsa_id = "de35e120-e297-4b96-97ef-10a43423ddec";
 
             security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDswQycch0x/7GZ0oFojkWCYv+gr5CyfBKXc3Izq+btIEMCrkDrIsz4Lnl5E3FSD7/htFn1oE84SaDKl5DgbNoev3pMC7MDDgdCFrHODOp7aXwjG8NaiCbiymyBglXyEN28hLvgHpvZmAn6KFo0lMGuKnz8HiuTfpBl6HpD6+02SQIDAQAB";
-            //security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDYp0451xITpczkBrl5Goxkh7m1oynj8eDHypIn7HmbyoNJd8cS4OsT850hIDBwYmFuwmxF1YAJS8Cd2nes7fjCHh+7oNqgNKxM2P2NLaeo4Uz6n9Lu4KKSxTiIT7BHiSryC0+Dic91XLH7ZTzrfryxigsc+ZNndv0fQLOW2i6OhwIDAQAB";
         }
 
         //create
-        public RestResponse CreateToken()
+        public HttpResponseMessage CreateToken()
         {
             return new Token(security).Create(jsonData.JsonToken());
         }
 
-        public RestResponse CreateTokenEncrypt()
+        public HttpResponseMessage CreateTokenEncrypt()
         {
             return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
         }
 
-        public RestResponse CreateTokenYape()
+        public HttpResponseMessage CreateTokenYape()
         {
             return new Token(security).CreateYape(jsonData.JsonTokenYape());
         }
-
-        public RestResponse CreateCharge()
+        
+        public HttpResponseMessage CreateCharge()
         {
-            string data = CreateToken().Content;
-
-            var json_object = JObject.Parse(data);
+            HttpResponseMessage data = CreateToken();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             return new Charge(security).Create(jsonData.JsonCharge((string)json_object["id"]));
 
         }
-        public RestResponse UpdateCharge()
+        public HttpResponseMessage UpdateCharge()
         {
-            string data = CreateCharge().Content;
-            var json_object = JObject.Parse(data);
+            HttpResponseMessage data = CreateCharge();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             return new Charge(security).Update(jsonData.JsonUpdateCharge(), (string)json_object["id"]);
         }
 
-        public RestResponse CreateChargeEncrypt()
+        public HttpResponseMessage CreateChargeEncrypt()
         {
-            string data = CreateToken().Content;
+            HttpResponseMessage data = CreateToken();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             return new Charge(security).Create(jsonData.JsonCharge((string)json_object["id"]), security.rsa_id, security.rsa_key);
         }
 
-        public RestResponse CreateChargeCapture()
+        public HttpResponseMessage CreateChargeCapture()
         {
-            string charge_data = CreateCharge().Content;
+            HttpResponseMessage charge_data = CreateCharge();
 
-            var json_charge = JObject.Parse(charge_data);
+            var json_charge = JObject.Parse(charge_data.Content.ReadAsStringAsync().Result);
 
             return new Charge(security).Capture((string)json_charge["id"]);
         }
 
-        public RestResponse CreateOrder()
+        public HttpResponseMessage CreateOrder()
         {
             return new Order(security).Create(jsonData.JsonOrder());
         }
-        public RestResponse ConfirmOrder()
+        public HttpResponseMessage ConfirmOrder()
         {
-            string data = CreateOrder().Content;
-            var json_object = JObject.Parse(data);
+            HttpResponseMessage data = CreateOrder();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             return new Order(security).Create(jsonData.JsonConfirmOrder((string)json_object["id"]));
         }
-        public RestResponse UpdateOrder()
+        public HttpResponseMessage UpdateOrder()
         {
-            string data = CreateOrder().Content;
-            var json_object = JObject.Parse(data);
+            HttpResponseMessage data = CreateOrder();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             return new Order(security).Update(jsonData.JsonUpdateOrder(), (string)json_object["id"]);
         }
 
-        public RestResponse CreateOrderEncrypt()
+        public HttpResponseMessage CreateOrderEncrypt()
         {
             return new Order(security).Create(jsonData.JsonOrder(), security.rsa_id, security.rsa_key);
 
         }
 
-        public RestResponse CreatePlan()
+        public HttpResponseMessage CreatePlan()
         {
             return new Plan(security).Create(jsonData.JsonPlan());
         }
-        public RestResponse UpdatePlan()
+        public HttpResponseMessage UpdatePlan()
         {
-            string data = CreatePlan().Content;
-            var json_object = JObject.Parse(data);
+            HttpResponseMessage data = CreatePlan();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             return new Plan(security).Update(jsonData.JsonUpdatePlan(), (string)json_object["id"]);
         }
-        public RestResponse CreateCustomer()
+        public HttpResponseMessage CreateCustomer()
         {
             return new Customer(security).Create(jsonData.JsonCustomer());
         }
 
-        public RestResponse CreateCard()
+        public HttpResponseMessage CreateCard()
         {
-            string token = CreateToken().Content;
-            string customer = CreateCustomer().Content;
-
-            var json_token = JObject.Parse(token);
-            var json_customer = JObject.Parse(customer);
+            HttpResponseMessage token = CreateToken();
+            HttpResponseMessage customer = CreateCustomer();
+            
+            var json_token = JObject.Parse(token.Content.ReadAsStringAsync().Result);
+            var json_customer = JObject.Parse(customer.Content.ReadAsStringAsync().Result);
 
             return new Card(security).Create(jsonData.JsonCard((string)json_customer["id"], (string)json_token["id"]));
         }
 
-        public RestResponse UpdateCard()
+        public HttpResponseMessage UpdateCard()
         {
-            string data = CreateCard().Content;
-            var json_object = JObject.Parse(data);
+            HttpResponseMessage data = CreateCard();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             return new Card(security).Update(jsonData.JsonUpdateCard(), (string)json_object["id"]);
         }
 
-        public RestResponse CreateSubscription()
+        public HttpResponseMessage CreateSubscription()
         {
-            string plan_data = CreatePlan().Content;
-            var json_plan = JObject.Parse(plan_data);
+            HttpResponseMessage plan_data = CreatePlan();
+            var json_plan = JObject.Parse(plan_data.Content.ReadAsStringAsync().Result);
 
-            string card_data = CreateCard().Content;
-            var json_card = JObject.Parse(card_data);
+            HttpResponseMessage card_data = CreateCard();
+            var json_card = JObject.Parse(card_data.Content.ReadAsStringAsync().Result);
 
             return new Subscription(security).Create(jsonData.JsonSubscription((string)json_card["id"], (string)json_plan["id"]));
         }
 
-        public RestResponse CreateRefund()
+        public HttpResponseMessage CreateRefund()
         {
-            string data = CreateCharge().Content;
+            HttpResponseMessage data = CreateCharge();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             return new Refund(security).Create(jsonData.JsonRefund((string)json_object["id"]));
         }
 
         //find
 
-        public RestResponse GetToken(string id)
+        public HttpResponseMessage GetToken(string id)
         {
             return new Token(security).Get(id);
         }
 
-        public RestResponse GetOrder(string id)
+        public HttpResponseMessage GetOrder(string id)
         {
             return new Order(security).Get(id);
         }
 
-        public RestResponse GetCharge(string id)
+        public HttpResponseMessage GetCharge(string id)
         {
             return new Charge(security).Get(id);
         }
 
-        public RestResponse GetPlan(string id)
+        public HttpResponseMessage GetPlan(string id)
         {
             return new Plan(security).Get(id);
         }
-        public RestResponse GetCustomer(string id)
+        public HttpResponseMessage GetCustomer(string id)
         {
             return new Customer(security).Get(id);
         }
-        public RestResponse GetCard(string id)
+        public HttpResponseMessage GetCard(string id)
         {
             return new Card(security).Get(id);
         }
-        public RestResponse GetSubscription(string id)
+        public HttpResponseMessage GetSubscription(string id)
         {
             return new Subscription(security).Get(id);
         }
 
-        public RestResponse GetRefund(string id)
+        public HttpResponseMessage GetRefund(string id)
         {
             return new Refund(security).Get(id);
         }
 
         //Delete
 
-        public RestResponse DeleteSubscription(string id)
+        public HttpResponseMessage DeleteSubscription(string id)
         {
             return new Subscription(security).Delete(id);
         }
-        public RestResponse DeleteCard(string id)
+        public HttpResponseMessage DeleteCard(string id)
         {
             return new Card(security).Delete(id);
         }
-        public RestResponse DeleteCustomer(string id)
+        public HttpResponseMessage DeleteCustomer(string id)
         {
             return new Customer(security).Delete(id);
         }
-        public RestResponse DeletePlan(string id)
+        public HttpResponseMessage DeletePlan(string id)
         {
             return new Plan(security).Delete(id);
         }

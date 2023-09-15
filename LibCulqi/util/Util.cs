@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Security.Cryptography;
+using System.Text;
 using RestSharp;
 namespace culqi.net
 {
@@ -15,6 +17,13 @@ namespace culqi.net
                 rngCrypt.GetBytes(tokenBuffer);
                 return BitConverter.ToInt32(tokenBuffer, 0);
             }
-        }      
+        } 
+        
+        public HttpResponseMessage CustomResponse(RestResponse resObject)
+        {
+            var response = new HttpResponseMessage(resObject.StatusCode);
+            response.Content = new StringContent(resObject.Content, Encoding.UTF8, "application/json");
+            return response;
+        }
     }
 }

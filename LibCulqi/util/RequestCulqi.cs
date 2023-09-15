@@ -91,9 +91,9 @@ namespace culqi.net
                 request.AddHeader("x-culqi-rsa-id", rsa_id);
             }
             RestResponse response = client.Execute(request);
-            /*respCulqi.statusCode = (int) response.StatusCode;
-            respCulqi.body = response.Content;*/
+
             Console.WriteLine(response.Content);
+
             return response;
 
         }
