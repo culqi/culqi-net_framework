@@ -26,9 +26,8 @@ namespace culqi.net
             return response;
         }
 
-        public List<string> GetCountryCodes()
+        public static List<string> GetCountryCodes()
         {
-
             List<string> countryCodes = new List<string>
             {
                 "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AS", "AT", "AU", "AW", "AX", "AZ",

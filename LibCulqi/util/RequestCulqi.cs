@@ -82,11 +82,18 @@ namespace culqi.net
                     request.AddJsonBody(model);
                 }
             }
+
+            var env = config.x_culqi_env_live;
+
+            if(api_key.Contains("test")) {
+                env = config.x_culqi_env_test;
+            }
+
             //string output = JsonConvert.SerializeObject(model);
             //Console.WriteLine(output);
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Authorization", "Bearer " + api_key);
-            request.AddHeader("x-culqi-env", config.x_culqi_env);
+            request.AddHeader("x-culqi-env", env);
             request.AddHeader("x-api-version", config.x_api_version);
             request.AddHeader("x-culqi-client", config.x_culqi_client);
             request.AddHeader("x-culqi-client-version", config.x_culqi_client_version);
