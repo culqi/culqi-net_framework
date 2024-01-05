@@ -1,6 +1,6 @@
 using System;
 
-namespace culqinet.util
+namespace culqi.net
 {
     public class CustomException : Exception
     {
