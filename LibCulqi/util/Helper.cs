@@ -1,7 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace culqinet.util
+namespace culqi.net
 {
     public class Helper
     {

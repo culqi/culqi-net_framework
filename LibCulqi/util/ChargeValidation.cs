@@ -2,7 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 using culqi.net;
 
-namespace culqinet.util
+namespace culqi.net
 {
     public static class ChargeValidation
     {
