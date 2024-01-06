@@ -1,7 +1,11 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
-namespace culqi.net
+namespace LibCulqi.util
 {
     public class Helper
     {
@@ -53,7 +57,7 @@ namespace culqi.net
 
         public static void ValidateDateFilter(string dateFrom, string dateTo)
         {
-            if (!int.TryParse(dateFrom, out int parsedDateFrom) || 
+            if (!int.TryParse(dateFrom, out int parsedDateFrom) ||
                 !int.TryParse(dateTo, out int parsedDateTo))
             {
                 throw new CustomException("Invalid value. Date_from and Date_to must be integers.");
@@ -81,5 +85,3 @@ namespace culqi.net
         }
     }
 }
-
-    

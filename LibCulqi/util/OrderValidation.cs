@@ -1,8 +1,10 @@
-using System;
-using System.Text.RegularExpressions;
-using culqi.net;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace culqi.net
+namespace LibCulqi.util
 {
     public static class OrderValidation
     {
@@ -12,7 +14,7 @@ namespace culqi.net
             {
                 throw new Exception("client_details is missing or invalid.");
             }
-            
+
             string firstName = clientDetails.TryGetValue("first_name", out var temp) ? (string)temp : null;
             string lastName = clientDetails.TryGetValue("last_name", out temp) ? (string)temp : null;
             string phoneNumber = clientDetails.TryGetValue("phone_number", out temp) ? (string)temp : null;
@@ -69,5 +71,3 @@ namespace culqi.net
         }
     }
 }
-
-    

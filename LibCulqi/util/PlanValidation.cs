@@ -1,8 +1,10 @@
-using System;
-using System.Text.RegularExpressions;
-using culqi.net;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace culqi.net
+namespace LibCulqi.util
 {
     public static class PlanValidation
     {
@@ -39,5 +41,3 @@ namespace culqi.net
         }
     }
 }
-
-    

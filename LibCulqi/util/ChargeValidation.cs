@@ -1,8 +1,11 @@
-using System;
-using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using culqi.net;
 
-namespace culqi.net
+namespace LibCulqi.util
 {
     public static class ChargeValidation
     {
@@ -106,5 +109,3 @@ namespace culqi.net
         }
     }
 }
-
-    

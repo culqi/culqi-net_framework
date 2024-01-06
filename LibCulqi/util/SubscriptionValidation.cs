@@ -1,8 +1,10 @@
-using System;
-using System.Text.RegularExpressions;
-using culqi.net;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace culqi.net
+namespace LibCulqi.util
 {
     public static class SubscriptionValidation
     {
@@ -10,7 +12,7 @@ namespace culqi.net
         {
             string cardId = data["card_id"] as string;
             Helper.ValidateStringStart(cardId, "crd");
-            
+
             string planId = data["plan_id"] as string;
             Helper.ValidateStringStart(planId, "pln");
         }
@@ -29,5 +31,3 @@ namespace culqi.net
         }
     }
 }
-
-    
