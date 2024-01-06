@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json.Nodes;
 using System.Text;
-using culqi.net;
 using Newtonsoft.Json;
 using RestSharp;
+using System.Net;
+using LibCulqi.util;
 
 
 namespace culqi.net
@@ -336,6 +337,5 @@ namespace culqi.net
             }
             return null;
         }
-    }
     }
 }

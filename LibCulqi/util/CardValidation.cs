@@ -1,8 +1,11 @@
-using System;
-using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using culqi.net;
 
-namespace culqi.net
+namespace LibCulqi.util
 {
     public static class CardValidation
     {
@@ -10,7 +13,7 @@ namespace culqi.net
         {
             string sourceId = data["token_id"] as string;
             Helper.ValidateStringStart(sourceId, "tkn");
-            
+
             string customerId = data["customer_id"] as string;
             Helper.ValidateStringStart(customerId, "cus");
         }
@@ -40,5 +43,3 @@ namespace culqi.net
         }
     }
 }
-
-    
