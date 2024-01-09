@@ -5,7 +5,7 @@ using System.Text;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 
-namespace culqinet.util
+namespace culqi.net
 {
     public class Encrypt
     {

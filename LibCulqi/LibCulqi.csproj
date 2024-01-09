@@ -89,8 +89,18 @@
     <Compile Include="Subscription.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Transfer.cs" />
+    <Compile Include="util\CardValidation.cs" />
+    <Compile Include="util\ChargeValidation.cs" />
+    <Compile Include="util\CustomerValidation.cs" />
+    <Compile Include="util\CustomException.cs" />
     <Compile Include="util\Encrypt.cs" />
+    <Compile Include="util\Helper.cs" />
+    <Compile Include="util\OrderValidation.cs" />
+    <Compile Include="util\PlanValidation.cs" />
+    <Compile Include="util\RefundValidation.cs" />
     <Compile Include="util\RequestCulqi.cs" />
+    <Compile Include="util\SubscriptionValidation.cs" />
+    <Compile Include="util\TokenValidation.cs" />
     <Compile Include="util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
