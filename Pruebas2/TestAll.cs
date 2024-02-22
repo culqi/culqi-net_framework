@@ -12,8 +12,9 @@ namespace culqi.net
 	{	
 		Dictionary<string, object> filter = new Dictionary<string, object>
 		{
-			{"limit", 50}
-		};
+			{"limit", 50},
+            // {"currency", "PE"}
+        };
 
 		Security security = null;
 

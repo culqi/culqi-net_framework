@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LibCulqi</RootNamespace>
     <AssemblyName>LibCulqi</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -102,6 +103,8 @@
     <Compile Include="util\SubscriptionValidation.cs" />
     <Compile Include="util\TokenValidation.cs" />
     <Compile Include="util\Util.cs" />
+    <Compile Include="constants\request\ConstantsRequest.cs" />
+    <Compile Include="constants\response\ConstantsResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
