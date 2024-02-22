@@ -40,27 +40,67 @@ namespace culqi.net
             return util.CustomResponse(responseObject);
         }
 
-		public HttpResponseMessage Create(Dictionary<string, object> body)
-		{
+		// public HttpResponseMessage Create(Dictionary<string, object> body)
+		// {
+        //     Dictionary<string, string> validationResponse = VerifyClassValidationCreate(body, this.URL);
+        //     if (validationResponse != null)
+        //     {
+        //         RestResponse response = new RestResponse();
+        //         response.StatusCode = HttpStatusCode.BadRequest;
+        //         response.Content = JsonConvert.SerializeObject(validationResponse);
+        //         return util.CustomResponse(response);
+        //     }
+
+        //     var api_key = "";
+        //     var urlPath = URL;
+        //     if (URL.Contains("tokens") || URL.Contains("confirm"))
+        //     {
+        //         api_key = security.public_key;
+        //     }
+        //     else
+        //     {
+        //         api_key = security.secret_key;
+        //     }
+        //     if(URL.Contains("plans") || URL.Contains("subscriptions"))
+        //     {
+        //         urlPath += "create";
+        //     }
+            
+        //     var responseObject = new RequestCulqi().Request(body, urlPath, api_key, "post");
+
+        //     return util.CustomResponse(responseObject);
+
+        // }
+        public HttpResponseMessage Create(Dictionary<string, object> body)
+        {
             Dictionary<string, string> validationResponse = VerifyClassValidationCreate(body, this.URL);
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
+                // Obtener el valor asociado con la clave "MerchantMessage" o proporcionar un valor predeterminado
+                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+
+                Console.WriteLine($"MerchantMessage: {merchantMessage}");
+
                 return util.CustomResponse(response);
             }
-
             var api_key = "";
             if (URL.Contains("tokens") || URL.Contains("confirm"))
             {
                 api_key = security.public_key;
             }
+            else if (URL.Contains("plans") || URL.Contains("subscriptions"))
+            {
+                api_key = security.secret_key;
+                URL = URL + "create";
+            }
             else
             {
                 api_key = security.secret_key;
             }
-            
+
             var responseObject = new RequestCulqi().Request(body, URL, api_key, "post");
 
             return util.CustomResponse(responseObject);
@@ -134,7 +174,7 @@ namespace culqi.net
 
         public HttpResponseMessage Update(Dictionary<string, object> body, String id, String rsa_id, String rsa_key)
         {
-            Dictionary<string, string> validationResponse = VerifyClassValidationUpdate(id, this.URL);
+            Dictionary<string, string> validationResponse = VerifyClassValidationPayloadUpdate(id, this.URL, body);
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
@@ -226,6 +266,30 @@ namespace culqi.net
                 if (url.Contains("orders"))
                 {
                     OrderValidation.Create(body);
+                }
+            }
+            catch (CustomException e)
+            {
+                Dictionary<string, string> errorDictionary = e.ErrorData.ToDictionary();
+                return errorDictionary;
+            }
+            return null;
+        }
+        private static Dictionary<string, string> VerifyClassValidationPayloadUpdate(string id, string url, Dictionary<string, object> body)
+        {
+            try
+            {
+                if (url.Contains("plans"))
+                {
+                    Helper.ValidateId(id);
+                    Helper.ValidateStringStart(id, "pln");
+                    PlanValidation.Update(body);
+                }
+                if (url.Contains("subscriptions"))
+                {
+                    Helper.ValidateId(id);
+                    Helper.ValidateStringStart(id, "sxn");
+                    //SubscriptionValidation.Update(body);
                 }
             }
             catch (CustomException e)

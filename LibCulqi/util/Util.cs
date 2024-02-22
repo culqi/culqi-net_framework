@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
@@ -17,7 +18,13 @@ namespace culqi.net
                 rngCrypt.GetBytes(tokenBuffer);
                 return BitConverter.ToInt32(tokenBuffer, 0);
             }
-        } 
+        }
+        public string GetRandomString()
+        {
+            string path = Path.GetRandomFileName();
+            path = path.Replace(".", "");
+            return path;
+        }
         
         public HttpResponseMessage CustomResponse(RestResponse resObject)
         {

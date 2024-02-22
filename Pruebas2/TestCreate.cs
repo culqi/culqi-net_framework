@@ -110,9 +110,10 @@ namespace culqi.net
 
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("plan", (string)json_object["object"]);
+            Assert.IsTrue(json_object.ContainsKey("id"));
+            Assert.IsTrue(json_object.ContainsKey("slug"));
 		}
-
+     
 		[Test]
 		public void Test11_CreateCustomer()
 		{
