@@ -13,5 +13,5 @@ RUN dotnet restore Pruebas2/Pruebas.csproj
 # Cambia al directorio de las pruebas
 WORKDIR /app/Pruebas2
 
-# Ejecuta las pruebas
-CMD ["dotnet", "test", "TestAll.cs"]
+# Ejecuta las pruebas(reemplázalo con tu comando de ejecución si es necesario)
+CMD ["dotnet", "test"]
