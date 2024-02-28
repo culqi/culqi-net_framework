@@ -24,14 +24,20 @@ namespace culqi.net
             this.URL = url;
         }
 
-		public HttpResponseMessage List(Dictionary<string, object> query_params)
-		{
+        public HttpResponseMessage List(Dictionary<string, object> query_params)
+        {
+            
+
             Dictionary<string, string> validationResponse = VerifyClassValidationList(query_params, this.URL);
+            
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
+                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+
+                Console.WriteLine($"MerchantMessage: {merchantMessage}");
                 return util.CustomResponse(response);
             }
             

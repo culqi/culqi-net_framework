@@ -9,22 +9,11 @@
         "projectUniqueName": "C:\\Culqui\\Prod\\NUEVOS NEGOCIOS\\culqi-net_framework\\LibCulqi\\LibCulqi.csproj",
         "projectName": "LibCulqi",
         "projectPath": "C:\\Culqui\\Prod\\NUEVOS NEGOCIOS\\culqi-net_framework\\LibCulqi\\LibCulqi.csproj",
-        "packagesPath": "C:\\Users\\Carlo\\.nuget\\packages\\",
-        "projectStyle": "PackagesConfig",
-        "configFilePaths": [
-          "C:\\Users\\Carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
         "frameworks": {
           "net48": {
             "projectReferences": {}
           }
-        },
-        "packagesConfigPath": "C:\\Culqui\\Prod\\NUEVOS NEGOCIOS\\culqi-net_framework\\LibCulqi\\packages.config"
+        }
       },
       "frameworks": {
         "net48": {}

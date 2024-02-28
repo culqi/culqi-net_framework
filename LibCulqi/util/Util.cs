@@ -30,6 +30,8 @@ namespace culqi.net
         {
             var response = new HttpResponseMessage(resObject.StatusCode);
             response.Content = new StringContent(resObject.Content, Encoding.UTF8, "application/json");
+            Console.WriteLine("Custom Response: " + response);
+
             return response;
         }
 
