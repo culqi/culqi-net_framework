@@ -118,13 +118,17 @@ namespace LibCulqi.util
 
         public static void ValidateEnumsIntValue(object value, int[] values, string errorMessage)
         {   
-            int intValue = value as int;
+            if (!(value is int))
+            {
+                throw new ArgumentException("El valor debe ser de tipo int.", nameof(value));
+            }
+
+            int intValue = (int)value;
+
             if (!values.Contains(intValue))
             {
                 throw new CustomException(errorMessage);
-
             }
-            return;
         }
         public static void ValidateEnumsStringValue(string value, string[] validValues, string errorMessage)
         {
