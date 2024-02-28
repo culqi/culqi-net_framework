@@ -118,7 +118,8 @@ namespace LibCulqi.util
 
         public static void ValidateEnumsIntValue(object value, int[] values, string errorMessage)
         {   
-            if (!int.TryParse(value.ToString(), out int intValue) || !values.Contains(intValue))
+            int intValue = value as int;
+            if (!values.Contains(intValue))
             {
                 throw new CustomException(errorMessage);
 
