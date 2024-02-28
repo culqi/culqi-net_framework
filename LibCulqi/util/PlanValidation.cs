@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,8 +11,12 @@ namespace LibCulqi.util
     public static class PlanValidation
     {
         public static void Create(Dictionary<string, object> data)
+
+
         {
             if(data.ContainsKey("interval_unit_time")){
+                Console.WriteLine("Entro en creacion: " + data);
+
                 object internalUnitTime = data["interval_unit_time"];
                 Helper.ValidateNotNull(internalUnitTime, ConstantsResponse.PLAN_INTERVAL_UNIT_TIME_REQUIRED);
                 Helper.ValidateTypeInt(internalUnitTime, ConstantsResponse.PLAN_INVALID_INTERVAL_UNIT_TIME_ENUM);
@@ -84,8 +90,8 @@ namespace LibCulqi.util
             if (data.ContainsKey("status"))
             {
                 object status = data["status"];
-                Helper.ValidateTypeInt(status, ConstantsResponse.PLAN_INVALID_INTERVAL_UNIT_TIME_ENUM);
-                Helper.ValidateEnumsIntValue(status, ConstantsRequest.VALID_PLAN_STATUS, ConstantsResponse.PLAN_INVALID_INTERVAL_UNIT_TIME_ENUM);
+                Helper.ValidateTypeInt(status, ConstantsResponse.PLAN_INVALID_STATUS_FILTER);
+                Helper.ValidateEnumsIntValue(status, ConstantsRequest.VALID_PLAN_STATUS, ConstantsResponse.PLAN_INVALID_STATUS_FILTER_ENUM);
 
             }
             if (data.ContainsKey("min_amount"))
@@ -158,8 +164,8 @@ namespace LibCulqi.util
             }
             if(data.ContainsKey("status")){
                 object status = data["status"];
-                Helper.ValidateTypeInt(status, ConstantsResponse.PLAN_INVALID_INTERVAL_UNIT_TIME_ENUM);
-                Helper.ValidateEnumsIntValue(status, ConstantsRequest.VALID_PLAN_STATUS, ConstantsResponse.PLAN_INVALID_INTERVAL_UNIT_TIME_ENUM);
+                Helper.ValidateTypeInt(status, ConstantsResponse.PLAN_UPDATE_INVALID_STATUS_ENUM);
+                Helper.ValidateEnumsIntValue(status, ConstantsRequest.VALID_PLAN_STATUS, ConstantsResponse.PLAN_UPDATE_INVALID_STATUS_ENUM);
             }
             if(data.ContainsKey("image")){
                 object image = data["image"];

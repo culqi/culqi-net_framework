@@ -58,4 +58,9 @@ public static class ConstantsResponse
     public const string METADATA_INVALID = "Enviaste el campo metadata con un formato incorrecto. "; 
     public const string METADATA_LIMIT_20 = "Enviaste más de 20 parámetros en el metadata. El límite es 20.";
     public const string METADATA_LIMIT_KEY_30_CHARACTERS_RF = "El objeto 'metadata' es inválido, límite key (1 - 30), value (1 - 200)";
+    public const string PLAN_UPDATE_INVALID_STATUS_ENUM = "El campo 'status' tiene un valor inválido o está vacío. Estos son los únicos valores permitidos: 1 y 2";
+
+    public const string PLAN_INVALID_STATUS_FILTER = "El filtro 'status' tiene un valor inválido o está vacío, debe tener un valor numérico.";
+    public const string PLAN_INVALID_STATUS_FILTER_ENUM = "El filtro 'status' tiene un valor inválido o está vacío. Estos son los únicos valores permitidos: 1, 2.";
+
 }

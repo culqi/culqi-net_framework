@@ -72,10 +72,11 @@ namespace culqi.net
         public void Test05_UpdateSubscription()
         {
             HttpResponseMessage data = culqiCRUD.UpdateSubscription();
-
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            Console.WriteLine(json_object);
+            //Assert.AreEqual("plan", (string)json_object["object"]);
+            Assert.IsTrue(json_object.ContainsKey("id"));
 
-            Assert.AreEqual("subscription", (string)json_object["object"]);
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -117,7 +118,7 @@ namespace LibCulqi.util
         }
 
         public static void ValidateEnumsIntValue(object value, int[] values, string errorMessage)
-        {   
+        {
             if (!(value is int))
             {
                 throw new ArgumentException("El valor debe ser de tipo int.", nameof(value));
