@@ -13,6 +13,7 @@ namespace LibCulqi.util
             if(data.ContainsKey("interval_unit_time")){
                 object internalUnitTime = data["interval_unit_time"];
                 Helper.ValidateNotNull(internalUnitTime, ConstantsResponse.PLAN_INTERVAL_UNIT_TIME_REQUIRED);
+                Helper.ValidateTypeInt(internalUnitTime, ConstantsResponse.PLAN_INVALID_INTERVAL_UNIT_TIME_ENUM);
                 Helper.ValidateEnumsIntValue(internalUnitTime, ConstantsRequest.INTERVAL_UNIT_TIME_ENUM, ConstantsResponse.PLAN_INVALID_INTERVAL_UNIT_TIME_ENUM);
             }
             if(data.ContainsKey("interval_count")){
