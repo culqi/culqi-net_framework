@@ -142,6 +142,19 @@ namespace LibCulqi.util
             return;
         }
 
+        public static Exception AdditionalValidation(Dictionary<string, object> data, List<string> requiredFields)
+        {
+            foreach (var field in requiredFields)
+            {
+                if (!data.ContainsKey(field) || data[field] == null || data[field].ToString() == "" || data[field].ToString() == "undefined")
+                {
+                    return new Exception($"El campo '{field}' es requerido y no está presente");
+                }
+            }
+
+            return null;
+        }
+
         public static void ValidateSizeCreationDate(int date, string errorMessage)
         {
             if (date != 10 && date != 13)

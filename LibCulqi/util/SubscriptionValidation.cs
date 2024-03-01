@@ -10,6 +10,14 @@ namespace LibCulqi.util
     {
         public static void Create(Dictionary<string, object> data)
         {
+            List<string> requiredPayload = new List<string> { "card_id", "plan_id", "tyc" };
+            Exception resultValidation = Helper.AdditionalValidation(data, requiredPayload);
+            if (resultValidation != null)    
+            {
+                throw new CustomException(resultValidation.Message);
+            }
+            else
+            {
             if (data.ContainsKey("card_id"))
             {
                 object card_id = data["card_id"];
@@ -40,7 +48,7 @@ namespace LibCulqi.util
             //         Dictionary<string, object> metadata = data["metadata"] as Dictionary<string, object>;
             //         Helper.ValidateMetadata(metadata);
             //     }
-
+            }
         }
 
         public static void List(Dictionary<string, object> data)

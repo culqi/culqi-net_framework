@@ -91,7 +91,7 @@ namespace culqi.net
                 {"limit", 50},
                 {"min_amount", 300},
                 {"max_amount", 500000},
-                {"status", 3},
+                {"status", 2},
                 {"before", "pln_live_qnJOtJiuGT88dAa5"},
                 {"after", "pln_live_c6cm1JuefM0WVkli"},
                 //{"creation_date_from", "2023-12-30T00:00:00.000Z"},
