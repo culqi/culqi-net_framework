@@ -44,7 +44,7 @@ public static class ConstantsResponse
     public const string SUBSCRIPTION_INVALID_TYPE_BEFORE = "El campo 'before' es inválido o está vacío, debe ser una cadena.";
     public const string SUBSCRIPTION_INVALID_RANGE_BEFORE = "El campo 'before' debe tener una longitud de 25 caracteres. ";
     public const string SUBSCRIPTION_INVALID_TYPE_AFTER = "El campo 'after' es inválido o está vacío, debe ser una cadena.";
-    public const string SUBSCRIPTION_INVALID_RANGE_AFTER = "El campo 'after' debe tener una longitud de ${FieldsLength.GENERATED_ID} caracteres.";
+    public const string SUBSCRIPTION_INVALID_RANGE_AFTER = "El campo 'after' debe tener una longitud de 25 caracteres.";
     public const string SUBSCRIPTION_INVALID_CARD_REQUIERD = "El campo 'card_id' es requerido.";
     public const string SUBSCRIPTION_INVALID_CARD_TYPE = "El campo 'card_id' es inválido o está vacío, debe ser una cadena";
     public const string PLAN_INVALID_AMOUNT_RANGE_USD = "El campo 'amount' admite valores en el rango 1 a 1500. ";
