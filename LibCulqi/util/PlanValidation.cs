@@ -144,11 +144,16 @@ namespace LibCulqi.util
             }
             if(data.ContainsKey("before"))
             {
-                Helper.ValidateLengthSizeValue(data["before"] as string, ConstantsRequest.GENERATED_ID, ConstantsResponse.PLAN_INVALID_BEFORE_FILTER);
+                object before = data["before"];
+                Helper.ValidateTypeString(before, ConstantsResponse.SUBSCRIPTION_INVALID_TYPE_BEFORE);
+                Helper.ValidateLengthSizeValue(data["before"] as string, ConstantsRequest.GENERATED_ID, ConstantsResponse.SUBSCRIPTION_INVALID_RANGE_BEFORE);
+                
             }
             if(data.ContainsKey("after"))
             {
-                Helper.ValidateLengthSizeValue(data["after"] as string, ConstantsRequest.GENERATED_ID, ConstantsResponse.PLAN_INVALID_AFTER_FILTER);
+                object after = data["after"];
+                Helper.ValidateTypeString(after, ConstantsResponse.SUBSCRIPTION_INVALID_TYPE_AFTER);
+                Helper.ValidateLengthSizeValue(data["after"] as string, ConstantsRequest.GENERATED_ID, ConstantsResponse.SUBSCRIPTION_INVALID_RANGE_AFTER);
             }
         }
 
