@@ -72,10 +72,18 @@ namespace LibCulqi.util
                 Helper.ValidateMax(image, ConstantsRequest.MAX_IMAGE_LENGTH, ConstantsResponse.PLAN_INVALID_IMAGE_RANGE);
                 Helper.ValidateRegex(data["image"] as string, ConstantsRequest.REGEX_IMAGE_URL, ConstantsResponse.PLAN_INVALID_IMAGE);
             }
-            if(data.ContainsKey("initial_cycles")){
-                Dictionary<string, object> initialCyclesData = data["initial_cycles"] as Dictionary<string, object>;
-                Helper.ValidateInitialCycles(initialCyclesData, data["currency"].ToString(), Convert.ToInt32(data["amount"]));
-            } 
+            Dictionary<string, object> initialCyclesData = data["initial_cycles"] as Dictionary<string, object>;
+                Exception validParameterInitialCycle = Helper.ValidateInitialCyclesParameters(initialCyclesData);
+                if (validParameterInitialCycle != null)
+                {
+                    throw new CustomException(validParameterInitialCycle.Message);
+                }
+
+                bool hasInitialCharge = Convert.ToBoolean(initialCyclesData["has_initial_charge"]);
+                int payAmount = Convert.ToInt32(initialCyclesData["amount"]);
+                int count = Convert.ToInt32(initialCyclesData["count"]);
+
+                Helper.ValidateInitialCycles(hasInitialCharge, data["currency"].ToString(), Convert.ToInt32(data["amount"]), payAmount, count);
             if (data.ContainsKey("metadata"))
             {
                 object metadata = data["metadata"];

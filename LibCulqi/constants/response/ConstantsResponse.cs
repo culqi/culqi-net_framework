@@ -61,6 +61,10 @@ public static class ConstantsResponse
     public const string PLAN_UPDATE_INVALID_STATUS_ENUM = "El campo 'status' tiene un valor inválido o está vacío. Estos son los únicos valores permitidos: 1 y 2";
 
     public const string PLAN_INVALID_STATUS_FILTER = "El filtro 'status' tiene un valor inválido o está vacío, debe tener un valor numérico.";
+    public const string PLAN_INVALID_INITIAL_CYCLES_COUNT = "El campo 'initial_cycles.count' es inválido o está vacío, debe tener un valor numérico.";
+    public const string PLAN_INVALID_INITIAL_CYCLES_HAS_INITIAL_CHARGE = "El campo 'initial_cycles.has_initial_charge' es inválido o está vacío. El valor debe ser un booleano (true o false).";
+    public const string PLAN_INVALID_INITIAL_CYCLES_AMOUNT = "El campo 'initial_cycles.amount' es inválido o está vacío, debe tener un valor numérico.";
+    public const string PLAN_INVALID_INITIAL_CYCLES_INTERVAL_UNIT_TIME_ENUM = "El campo 'initial_cycles.interval_unit_time' tiene un valor inválido o está vacío. Estos son los únicos valores permitidos: [1, 2, 3, 4, 5, 6]";
     public const string PLAN_INVALID_STATUS_FILTER_ENUM = "El filtro 'status' tiene un valor inválido o está vacío. Estos son los únicos valores permitidos: 1, 2.";
 
 }

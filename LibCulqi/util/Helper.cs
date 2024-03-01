@@ -253,7 +253,7 @@ namespace LibCulqi.util
             }
         }
         public static string ValidateMetadataSchema(object objMetadata)
-        {   
+        {
             IDictionary<string, object> metadata = objMetadata as IDictionary<string, object>;
             if (!(objMetadata is IDictionary<string, object>) && !(objMetadata is IEnumerable<KeyValuePair<string, object>>))
             {
@@ -282,70 +282,123 @@ namespace LibCulqi.util
 
             return JsonConvert.SerializeObject(transformedMetadata);
         }
-        public static void ValidateEnumCurrency(string currency)
+        public static Exception ValidateEnumCurrency(string currency)
         {
-            if (!(ConstantsRequest.CURRENCY_ENUM.Contains(currency)))
+            if ((ConstantsRequest.CURRENCY_ENUM.Contains(currency)))
             {
-                throw new CustomException(ConstantsResponse.PLAN_INVALID_CURRENCY_ENUM);
+                return null;
             }
-        }
-        public static void ValidateCurrency(string currency, int amount)
-        {
-            ValidateEnumCurrency(currency);
+            return new CustomException(ConstantsResponse.PLAN_INVALID_CURRENCY_ENUM);
 
-            int minAmountPublicApi = ConstantsRequest.MIN_AMOUNT_PEN * 100;
-            int maxAmountPublicApi = ConstantsRequest.MAX_AMOUNT_PEN * 100;
+        }
+
+        public static Exception ValidateInitialCyclesParameters(Dictionary<string, object> initialCycles)
+        {
+            string[] parametersInitialCycles = { "count", "has_initial_charge", "amount", "interval_unit_time" };
+
+            foreach (string field in parametersInitialCycles)
+            {
+                if (!initialCycles.ContainsKey(field))
+                {
+                    throw new Exception($"El campo obligatorio '{field}' no está presente en 'initial_cycles'.");
+                }
+            }
+
+            if (!(initialCycles["count"] is int))
+            {
+                throw new Exception(ConstantsResponse.PLAN_INVALID_INITIAL_CYCLES_COUNT);
+            }
+
+            if (!(initialCycles["has_initial_charge"] is bool))
+            {
+                throw new Exception(ConstantsResponse.PLAN_INVALID_INITIAL_CYCLES_HAS_INITIAL_CHARGE);
+            }
+
+            if (!(initialCycles["amount"] is int))
+            {
+                throw new Exception(ConstantsResponse.PLAN_INVALID_INITIAL_CYCLES_AMOUNT);
+            }
+
+            int[] valuesIntervalUnitTime = { 1, 2, 3, 4, 5, 6 };
+
+            if (!(initialCycles["interval_unit_time"] is int) || !valuesIntervalUnitTime.Contains((int)initialCycles["interval_unit_time"]))
+            {
+                throw new Exception(ConstantsResponse.PLAN_INVALID_INITIAL_CYCLES_INTERVAL_UNIT_TIME_ENUM);
+            }
+            return null;
+        }
+
+        // public static Exception ValidateEnumCurrency(string currency)
+        // {
+        //     string[] allowedValues = { "PEN", "USD" };
+        //     if (allowedValues.Contains(currency))
+        //     {
+        //         return null; // El valor está en la lista, no hay error
+        //     }
+
+        //     // Si llega aquí, significa que el valor no está en la lista
+        //     return new CustomException($"El campo 'currency' es inválido o está vacío, el código de la moneda en tres letras (Formato ISO 4217). Culqi actualmente soporta las siguientes monedas: {string.Join(", ", allowedValues)}.");
+        // }
+
+        public static Exception ValidateCurrency(string currency, int amount)
+        {
+            Exception err = ValidateEnumCurrency(currency);
+            if (err != null)
+            {
+                return new CustomException(err.ToString());
+            }
+            int minAmountPen = 3 * 100;
+            int maxAmountPen = 5000 * 100;
+            int minAmountUsd = 1 * 100;
+            int maxAmountUsd = 1500 * 100;
+
+            int minAmountPublicApi = minAmountPen;
+            int maxAmountPublicApi = maxAmountPen;
 
             if (currency == "USD")
             {
-                minAmountPublicApi = ConstantsRequest.MIN_AMOUNT_USD * 100;
-                maxAmountPublicApi = ConstantsRequest.MAX_AMOUNT_USD * 100;
+                minAmountPublicApi = minAmountUsd;
+                maxAmountPublicApi = maxAmountUsd;
             }
 
-            bool validAmount = amount >= minAmountPublicApi && amount <= maxAmountPublicApi;
+            bool validAmount = minAmountPublicApi <= amount && amount <= maxAmountPublicApi;
 
             if (!validAmount)
             {
-                if (currency == "USD")
-                {
-                    throw new CustomException(ConstantsResponse.PLAN_INVALID_AMOUNT_RANGE_USD);
-                }
-
-                throw new CustomException(ConstantsResponse.PLAN_INVALID_AMOUNT_RANGE_PEN);
+                return new CustomException($"El campo 'amount' admite valores en el rango {minAmountPublicApi} a {maxAmountPublicApi}.");
             }
+
+            return null;
+
         }
-        public static void ValidateInitialCycles(Dictionary<string, object> initialCycles, string currency, int amount)
+        public static void ValidateInitialCycles(bool hasInitialCharge, string currency, int amount, int payAmount, int count)
         {
-            bool hasInitialCharge = Convert.ToBoolean(initialCycles["has_initial_charge"]);
-            int payAmount = Convert.ToInt32(initialCycles["amount"]);
-            int count = Convert.ToInt32(initialCycles["count"]);
-
-            if (!(payAmount is int))
-            {
-                throw new CustomException(ConstantsResponse.PLAN_INVALID_INITIAL_CYCLES_AMOUNT_IS_NOT_NUMBER);
-            }
-
             if (hasInitialCharge)
             {
-                ValidateCurrency(currency, amount);
+                Exception err = ValidateCurrency(currency, amount);
+                if (err != null)
+                {
+                    throw new CustomException(err.ToString());
+                }
+
                 if (amount == payAmount)
                 {
                     throw new CustomException(ConstantsResponse.PLAN_AMOUNT_PAY_AMOUNT_EQUAL);
                 }
 
-                if (count < ConstantsRequest.PUBLIC_COUNT_MIN || count > ConstantsRequest.PUBLIC_INTERVAL_COUNT_MAX)
+                if (!(1 <= count && count <= 9999))
                 {
                     throw new CustomException(ConstantsResponse.PLAN_INVALID_INITIAL_CYCLES_RANGE);
                 }
 
-                if (payAmount < ConstantsRequest.PUBLIC_PLAN_INITIAL_CYCLE_MIN_AMOUNT || payAmount > ConstantsRequest.PUBLIC_PLAN_INITIAL_CYCLE_MAX_AMOUNT)
+                if (!(300 <= payAmount && payAmount <= 500000))
                 {
                     throw new CustomException(ConstantsResponse.PLAN_INVALID_INITIAL_CYCLE_AMOUNT_RANGE);
                 }
             }
             else
             {
-                if (count < 0 || count > ConstantsRequest.PUBLIC_INTERVAL_COUNT_MAX)
+                if (!(0 <= count && count <= 9999))
                 {
                     throw new CustomException(ConstantsResponse.PLAN_INITIAL_CYCLES_COUNT_NON_ZERO);
                 }
@@ -357,39 +410,6 @@ namespace LibCulqi.util
             }
         }
 
-        public static Exception ValidateMetadata(Dictionary<string, object> metadata)
-        {
-            // Permitir un diccionario vacío para el campo metadata
-            if (metadata == null)
-            {
-                throw new CustomException("Enviaste el campo metadata con un formato incorrecto.");
-            }
-
-            if (!metadata.Any())
-            {
-                return null;
-            }
-
-            // Verificar límites de longitud de claves y valores
-            Exception errorLength = ValidateKeyAndValueLength(metadata);
-            if (errorLength != null)
-            {
-                throw new CustomException(errorLength.ToString());
-            }
-
-            // Convertir el diccionario transformado a JSON
-            // try
-            // {
-            //     // JsonSerializer.Serialize(metadata);
-            // }
-            // catch (System.Text.Json.JsonException e)
-            // {
-            //     string errorMessage = $"Error al serializar el diccionario a JSON. Mensaje de error: {e.Message}";
-            //     throw new CustomException(errorMessage);
-            // }
-
-            return null;
-        }
         public static Exception ValidateKeyAndValueLength(Dictionary<string, object> objMetadata)
         {
             int maxKeyLength = 30;
@@ -419,5 +439,40 @@ namespace LibCulqi.util
                 throw new CustomException($"El campo 'id' es inválido. La longitud debe ser de 25 caracteres.");
             }
         }
+
+        // public static Exception ValidateMetadata(Dictionary<string, object> metadata)
+        // {
+        //     // Permitir un diccionario vacío para el campo metadata
+        //     if (metadata == null)
+        //     {
+        //         throw new CustomException("Enviaste el campo metadata con un formato incorrecto.");
+        //     }
+
+        //     if (!metadata.Any())
+        //     {
+        //         return null;
+        //     }
+
+        //     // Verificar límites de longitud de claves y valores
+        //     Exception errorLength = ValidateKeyAndValueLength(metadata);
+        //     if (errorLength != null)
+        //     {
+        //         throw new CustomException(errorLength.ToString());
+        //     }
+
+        //     // Convertir el diccionario transformado a JSON
+        //     try
+        //     {
+        //         JsonConvert.SerializeObject(metadata);
+        //     }
+        //     catch (System.Text.Json.JsonException e)
+        //     {
+        //         string errorMessage = $"Error al serializar el diccionario a JSON. Mensaje de error: {e.Message}";
+        //         throw new CustomException(errorMessage);
+        //     }
+
+        //     return null;
+        // }
+
     }
 }
