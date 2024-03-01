@@ -100,8 +100,26 @@ namespace LibCulqi.util
             {
                 object after = data["after"];
                 Helper.ValidateTypeString(after, ConstantsResponse.SUBSCRIPTION_INVALID_TYPE_AFTER);
-                Helper.ValidateLengthSizeValue(data["before"] as string, ConstantsRequest.GENERATED_ID, ConstantsResponse.SUBSCRIPTION_INVALID_RANGE_AFTER);
+                Helper.ValidateLengthSizeValue(data["after"] as string, ConstantsRequest.GENERATED_ID, ConstantsResponse.SUBSCRIPTION_INVALID_RANGE_AFTER);
             }
+
+             // Validate parameters before
+            // if (data.ContainsKey("before"))
+            // {
+            //     if (!(data["before"] is string) || ((string)data["before"]).Length != 25)
+            //     {
+            //         throw new CustomException("El campo 'before' es inválido. La longitud debe ser de 25 caracteres.");
+            //     }
+            // }
+
+            // // Validate parameters after
+            // if (data.ContainsKey("after"))
+            // {
+            //     if (!(data["after"] is string) || ((string)data["after"]).Length != 25)
+            //     {
+            //         throw new CustomException("El campo 'after' es inválido. La longitud debe ser de 25 caracteres.");
+            //     }
+            // }
         }
 
         public static void Update(Dictionary<string, object> data)

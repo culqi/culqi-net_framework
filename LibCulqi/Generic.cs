@@ -327,6 +327,7 @@ namespace culqi.net
                 }
                 if (url.Contains("plans"))
                 {
+                    Helper.ValidateId(id);
                     Helper.ValidateStringStart(id, "pln");
                 }
                 if (url.Contains("refunds"))
@@ -335,6 +336,7 @@ namespace culqi.net
                 }
                 if (url.Contains("subscriptions"))
                 {
+                    Helper.ValidateId(id);
                     Helper.ValidateStringStart(id, "sxn");
                 }
                 if (url.Contains("orders"))
