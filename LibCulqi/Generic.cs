@@ -206,15 +206,19 @@ namespace culqi.net
         public HttpResponseMessage Delete(String id)
         {
             Dictionary<string, string> validationResponse = VerifyClassValidationUpdate(id, this.URL);
+            string merchantMessage = "";
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
+                merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                Console.WriteLine($"MerchantMessage: {merchantMessage}");
                 return util.CustomResponse(response);
             }
             var responseObject = new RequestCulqi().Request(null, URL + id + "/", security.secret_key, "delete");
-
+            merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+            Console.WriteLine($"MerchantMessage: {merchantMessage}");
             return util.CustomResponse(responseObject);
         }
         public HttpResponseMessage CreateYape(Dictionary<string, object> body)
