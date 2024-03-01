@@ -11,12 +11,16 @@ namespace LibCulqi.util
     public static class PlanValidation
     {
         public static void Create(Dictionary<string, object> data)
-
-
         {
+            List<string> requiredPayload = new List<string> { "short_name", "description", "amount", "currency", "interval_unit_time", "interval_count", "initial_cycles", "name" };
+            Exception resultValidation = Helper.AdditionalValidation(data, requiredPayload);
+            if (resultValidation != null)
+            {
+                throw new CustomException(resultValidation.Message);
+            }
+            else
+            {
             if(data.ContainsKey("interval_unit_time")){
-                Console.WriteLine("Entro en creacion: " + data);
-
                 object internalUnitTime = data["interval_unit_time"];
                 Helper.ValidateNotNull(internalUnitTime, ConstantsResponse.PLAN_INTERVAL_UNIT_TIME_REQUIRED);
                 Helper.ValidateTypeInt(internalUnitTime, ConstantsResponse.PLAN_INVALID_INTERVAL_UNIT_TIME_ENUM);
@@ -82,7 +86,7 @@ namespace LibCulqi.util
             //         Dictionary<string, object> metadata = data["metadata"] as Dictionary<string, object>;
             //         Helper.ValidateMetadata(metadata);
             //     }
-
+            }
         }
 
         public static void List(Dictionary<string, object> data)
