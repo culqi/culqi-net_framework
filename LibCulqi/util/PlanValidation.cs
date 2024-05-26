@@ -83,7 +83,7 @@ namespace LibCulqi.util
                 int payAmount = Convert.ToInt32(initialCyclesData["amount"]);
                 int count = Convert.ToInt32(initialCyclesData["count"]);
 
-                Helper.ValidateInitialCycles(hasInitialCharge, data["currency"].ToString(), Convert.ToInt32(data["amount"]), payAmount, count);
+                Helper.ValidateInitialCycles(hasInitialCharge, count);
             if (data.ContainsKey("metadata"))
             {
                 object metadata = data["metadata"];
@@ -110,15 +110,11 @@ namespace LibCulqi.util
             {
                 object min_amount = data["min_amount"];
                 Helper.ValidateAmountValueWithError(min_amount, ConstantsResponse.PLAN_INVALID_MIN_AMOUNT_FILTER_PUBLIC_API);
-                Helper.ValidateMin(min_amount, ConstantsRequest.MIN_AMOUNT_PEN * 100, ConstantsResponse.PLAN_MIN_AMOUNT_FILTER_RANGE_PUBLIC_API);
-                Helper.ValidateMax(min_amount, ConstantsRequest.MAX_AMOUNT_PEN * 100, ConstantsResponse.PLAN_MIN_AMOUNT_FILTER_RANGE_PUBLIC_API);
             }
             if (data.ContainsKey("max_amount"))
             {
                 object max_amount = data["max_amount"];
                 Helper.ValidateAmountValueWithError(max_amount, ConstantsResponse.PLAN_INVALID_MAX_AMOUNT_FILTER_PUBLIC_API);
-                Helper.ValidateMin(max_amount, ConstantsRequest.MIN_AMOUNT_PEN * 100, ConstantsResponse.PLAN_MAX_AMOUNT_FILTER_RANGE_PUBLIC_API);
-                Helper.ValidateMax(max_amount, ConstantsRequest.MAX_AMOUNT_PEN * 100, ConstantsResponse.PLAN_MAX_AMOUNT_FILTER_RANGE_PUBLIC_API);
             }
             if (data.ContainsKey("creation_date_from"))
             {
