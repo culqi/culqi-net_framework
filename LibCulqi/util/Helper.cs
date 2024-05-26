@@ -340,72 +340,22 @@ namespace LibCulqi.util
         //     return new CustomException($"El campo 'currency' es inválido o está vacío, el código de la moneda en tres letras (Formato ISO 4217). Culqi actualmente soporta las siguientes monedas: {string.Join(", ", allowedValues)}.");
         // }
 
-        public static Exception ValidateCurrency(string currency, int amount)
-        {
-            Exception err = ValidateEnumCurrency(currency);
-            if (err != null)
-            {
-                return new CustomException(err.ToString());
-            }
-            int minAmountPen = 3 * 100;
-            int maxAmountPen = 5000 * 100;
-            int minAmountUsd = 1 * 100;
-            int maxAmountUsd = 1500 * 100;
 
-            int minAmountPublicApi = minAmountPen;
-            int maxAmountPublicApi = maxAmountPen;
-
-            if (currency == "USD")
-            {
-                minAmountPublicApi = minAmountUsd;
-                maxAmountPublicApi = maxAmountUsd;
-            }
-
-            bool validAmount = minAmountPublicApi <= amount && amount <= maxAmountPublicApi;
-
-            if (!validAmount)
-            {
-                return new CustomException($"El campo 'amount' admite valores en el rango {minAmountPublicApi} a {maxAmountPublicApi}.");
-            }
-
-            return null;
-
-        }
-        public static void ValidateInitialCycles(bool hasInitialCharge, string currency, int amount, int payAmount, int count)
+        public static void ValidateInitialCycles(bool hasInitialCharge, int count)
         {
             if (hasInitialCharge)
             {
-                Exception err = ValidateCurrency(currency, amount);
-                if (err != null)
-                {
-                    throw new CustomException(err.ToString());
-                }
-
-                if (amount == payAmount)
-                {
-                    throw new CustomException(ConstantsResponse.PLAN_AMOUNT_PAY_AMOUNT_EQUAL);
-                }
-
                 if (!(1 <= count && count <= 9999))
                 {
                     throw new CustomException(ConstantsResponse.PLAN_INVALID_INITIAL_CYCLES_RANGE);
                 }
 
-                if (!(300 <= payAmount && payAmount <= 500000))
-                {
-                    throw new CustomException(ConstantsResponse.PLAN_INVALID_INITIAL_CYCLE_AMOUNT_RANGE);
-                }
             }
             else
             {
                 if (!(0 <= count && count <= 9999))
                 {
                     throw new CustomException(ConstantsResponse.PLAN_INITIAL_CYCLES_COUNT_NON_ZERO);
-                }
-
-                if (payAmount != 0)
-                {
-                    throw new CustomException(ConstantsResponse.PLAN_INITIAL_CYCLES_AMOUNT_NON_ZERO);
                 }
             }
         }
