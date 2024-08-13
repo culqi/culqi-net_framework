@@ -1,6 +1,8 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Text.Json.Nodes;
 
 namespace culqi.net
 {
@@ -14,20 +16,20 @@ namespace culqi.net
 		{
         }
 
-		public RestResponse Request(Object model, string url, string api_key, string type_method)
+		public RestResponse Request(Object model, string url, string api_key, string type_method, Dictionary<string, object> custom_header = null)
 		{
-			return GenericRequest(model, url, api_key, type_method, null);
+			return GenericRequest(model, url, api_key, type_method, null, custom_header);
 
 		}
 
-        public RestResponse Request(Object model, string url, string api_key, string type_method, string rsa_id)
+        public RestResponse Request(Object model, string url, string api_key, string type_method, string rsa_id, Dictionary<string, object> custom_header = null)
         {
-            return GenericRequest(model, url, api_key ,type_method, rsa_id);
+            return GenericRequest(model, url, api_key ,type_method, rsa_id, custom_header);
 
         }
 
 
-        public RestResponse GenericRequest(Object model, string url, string api_key, string type_method, string rsa_id)
+        public RestResponse GenericRequest(Object model, string url, string api_key, string type_method, string rsa_id, Dictionary<string, object> custom_header = null)
         {
             //ResponseCulqi respCulqi= new ResponseCulqi();
             var client = new RestClient(config.url_api_base);
@@ -101,6 +103,21 @@ namespace culqi.net
             {
                 request.AddHeader("x-culqi-rsa-id", rsa_id);
             }
+
+            if (custom_header != null)
+            {
+                Console.WriteLine("\nCustom Headers:");
+                Console.WriteLine(JsonConvert.SerializeObject(custom_header));
+
+                foreach (var header in custom_header)
+                {
+                    if (header.Value != null && !string.IsNullOrWhiteSpace(header.Value.ToString()))
+                    {
+                        request.AddHeader(header.Key, header.Value.ToString());
+                    }
+                }
+            }
+
             RestResponse response = client.Execute(request);
 
             Console.WriteLine(response.Content);
