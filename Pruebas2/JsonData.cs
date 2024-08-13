@@ -137,26 +137,18 @@ public class JsonData
         return map;
     }
 
-    // public Dictionary<string, object> JsonPlan()
-    // {
-    //     Dictionary<string, object> metadata = new Dictionary<string, object>
-    //         {
-    //             {"others_id", "9092"}
-    //         };
+    public Dictionary<string, object> JsonCustomHeader()
+    {
+        Dictionary<string, object> map = new Dictionary<string, object>
+            {
+                {"X-Charge-Channel", "recurrent"},
+                {"X-add-header", null},
+                {"X-config-valid", "  "},
+            };
 
-    //     Dictionary<string, object> map = new Dictionary<string, object>
-    //         {
-    //             {"amount", 10000},
-    //             {"currency_code", "PEN"},
-    //             {"interval", "dias"},
-    //             {"interval_count", 15},
-    //             {"limit", 2},
-    //             {"metadata", metadata},
-    //             {"name", "plan-culqi-"+GetRandomString()},
-    //             {"trial_days", 15}
-    //         };
-    //     return map;
-    // }
+        return map;
+    }
+
     public Dictionary<string, object> JsonPlan()
     {
         Dictionary<string, object> initialCycles = new Dictionary<string, object>
