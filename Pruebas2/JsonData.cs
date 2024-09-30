@@ -174,7 +174,6 @@ public class JsonData
                 {"interval_unit_time", 1},
                 {"interval_count", 1},
                 {"initial_cycles", initialCycles},
-                {"image", "https://recurrencia-suscripciones-qa.s3.amazonaws.com/f097e1d5-e365-42f3-bc40-a27beab80f54"},
                 {"metadata", metadata}
             };
 
@@ -209,7 +208,6 @@ public class JsonData
                 {"description", "Cypress PCI"},
                 {"name", "CY PCI -PLAN-"+util.GetRandomString()},
                 {"metadata", metadata},
-                {"image", "https://recurrencia-suscripciones-qa.s3.amazonaws.com/f097e1d5-e365-42f3-bc40-a27beab80f54"}
             };
         return map;
     }
