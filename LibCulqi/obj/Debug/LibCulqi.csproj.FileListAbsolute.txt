@@ -122,31 +122,3 @@ C:\Users\Jordan\source\repos\LibCulqi\LibCulqi\bin\Debug\System.Threading.Tasks.
 C:\Users\Jordan\source\repos\LibCulqi\LibCulqi\obj\Debug\LibCulqi.csproj.CopyComplete
 C:\Users\Jordan\source\repos\LibCulqi\LibCulqi\obj\Debug\LibCulqi.dll
 C:\Users\Jordan\source\repos\LibCulqi\LibCulqi\obj\Debug\LibCulqi.pdb
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\LibCulqi.dll.config
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\LibCulqi.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\LibCulqi.pdb
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\Newtonsoft.Json.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\RestSharp.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Buffers.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Memory.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Numerics.Vectors.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Text.Encodings.Web.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Text.Json.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\Newtonsoft.Json.xml
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\RestSharp.xml
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Buffers.xml
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Memory.xml
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Numerics.Vectors.xml
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Text.Encodings.Web.xml
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Text.Json.xml
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\obj\Debug\LibCulqi.csproj.AssemblyReference.cache
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\obj\Debug\LibCulqi.csproj.CoreCompileInputs.cache
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\obj\Debug\LibCulqi.csproj.CopyComplete
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\obj\Debug\LibCulqi.dll
-C:\Culqui\Prod\NUEVOS NEGOCIOS\culqi-net_framework\LibCulqi\obj\Debug\LibCulqi.pdb
