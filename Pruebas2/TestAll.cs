@@ -12,8 +12,11 @@ namespace culqi.net
 	{	
 		Dictionary<string, object> filter = new Dictionary<string, object>
 		{
-			{"limit", 50}
-		};
+			// {"limit", 50},
+			// { "status", 2},
+			// {"before", "snx_live_JerEsyqmMaJzcCcw"},
+			{"after", "snx_live_neFhrLrXQvozBdWn"}
+        };
 
 		Security security = null;
 
@@ -69,31 +72,66 @@ namespace culqi.net
         }
 
         [Test]
+		// public void Test04_AllPlans()
+		// {
+            // HttpResponseMessage plans = new Plan(security).List(filter);
+            // Assert.False(plans.IsSuccessStatusCode);
+			//JObject json_plans = JObject.Parse(plans.Content.ReadAsStringAsync().Result);
+			// List<Dictionary<string, object>> data = json_plans["data"].ToObject<List<Dictionary<string, object>>>();
+			//bool valid = false;
+			//if (data.Count >= 0)
+			//{
+			//	valid = true;
+			//}
+			//Assert.True(valid);
+		// }
+
 		public void Test04_AllPlans()
-		{
-            HttpResponseMessage plans = new Plan(security).List(filter);
-			JObject json_plans = JObject.Parse(plans.Content.ReadAsStringAsync().Result);
+        {
+            Dictionary<string, object> filterPlan = new Dictionary<string, object>
+            {
+                {"limit", 50},
+                {"min_amount", 300},
+                {"max_amount", 500000},
+                {"status", 2},
+                {"before", "pln_live_qnJOtJiuGT88dAa5"},
+                {"after", "pln_live_c6cm1JuefM0WVkli"},
+                //{"creation_date_from", "2023-12-30T00:00:00.000Z"},
+                //{"creation_date_to", "2023-12-20T00:00:00.000Z"},
+            };
+            HttpResponseMessage plans = new Plan(security).List(filterPlan);
+            JObject json_plans = JObject.Parse(plans.Content.ReadAsStringAsync().Result);
             List<Dictionary<string, object>> data = json_plans["data"].ToObject<List<Dictionary<string, object>>>();
-			bool valid = false;
-			if (data.Count >= 0)
-			{
-				valid = true;
-			}
-			Assert.True(valid);
-		}
+            bool valid = false;
+            if (data.Count >= 0)
+            {
+                valid = true;
+            }
+            Assert.True(valid);
+        }
 
 		[Test]
 		public void Test05_AllSubscriptions()
 		{
-            HttpResponseMessage subscriptions = new Subscription(security).List(filter);
-			JObject json_subscriptions = JObject.Parse(subscriptions.Content.ReadAsStringAsync().Result);
+            Dictionary<string, object> filterSubscriptions = new Dictionary<string, object>
+            {
+                // {"limit", 50},
+                // {"plan_id", "pln_live_WIqnS2qzco4TeTnT"},
+                // {"status", 1},
+                // {"before", "sxn_live_JerEsyqmMaJzcCcw"},
+                {"after", "sxn_live_neFrhLrXQvozBdWn"},
+                //{"creation_date_from", "2023-12-30T00:00:00.000Z"},
+                //{"creation_date_to", "2023-12-20T00:00:00.000Z"},
+            };
+            HttpResponseMessage subscriptions = new Subscription(security).List(filterSubscriptions);
+            JObject json_subscriptions = JObject.Parse(subscriptions.Content.ReadAsStringAsync().Result);
             List<Dictionary<string, object>> data = json_subscriptions["data"].ToObject<List<Dictionary<string, object>>>();
-			bool valid = false;
-			if (data.Count >= 0)
-			{
-				valid = true;
-			}
-			Assert.True(valid);
+            bool valid = false;
+            if (data.Count >= 0)
+            {
+                valid = true;
+            }
+            Assert.True(valid);
 		}
 
 		[Test]
