@@ -1034,19 +1034,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Carlo\\.nuget\\packages\\": {}
+    "C:\\Users\\Jordan\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Culqui\\Prod\\NUEVOS NEGOCIOS\\culqi-net_framework\\Pruebas2\\Pruebas.csproj",
+      "projectUniqueName": "C:\\Users\\Jordan\\source\\repos\\LibCulqi\\Pruebas2\\Pruebas.csproj",
       "projectName": "Pruebas",
-      "projectPath": "C:\\Culqui\\Prod\\NUEVOS NEGOCIOS\\culqi-net_framework\\Pruebas2\\Pruebas.csproj",
-      "packagesPath": "C:\\Users\\Carlo\\.nuget\\packages\\",
-      "outputPath": "C:\\Culqui\\Prod\\NUEVOS NEGOCIOS\\culqi-net_framework\\Pruebas2\\obj\\",
+      "projectPath": "C:\\Users\\Jordan\\source\\repos\\LibCulqi\\Pruebas2\\Pruebas.csproj",
+      "packagesPath": "C:\\Users\\Jordan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jordan\\source\\repos\\LibCulqi\\Pruebas2\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jordan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1060,8 +1065,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Culqui\\Prod\\NUEVOS NEGOCIOS\\culqi-net_framework\\LibCulqi\\LibCulqi.csproj": {
-              "projectPath": "C:\\Culqui\\Prod\\NUEVOS NEGOCIOS\\culqi-net_framework\\LibCulqi\\LibCulqi.csproj"
+            "C:\\Users\\Jordan\\source\\repos\\LibCulqi\\LibCulqi\\LibCulqi.csproj": {
+              "projectPath": "C:\\Users\\Jordan\\source\\repos\\LibCulqi\\LibCulqi\\LibCulqi.csproj"
             }
           }
         }
@@ -1117,7 +1122,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
