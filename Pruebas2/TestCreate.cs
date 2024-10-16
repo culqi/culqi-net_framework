@@ -110,9 +110,10 @@ namespace culqi.net
 
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("plan", (string)json_object["object"]);
+            Assert.IsTrue(json_object.ContainsKey("id"));
+            Assert.IsTrue(json_object.ContainsKey("slug"));
 		}
-
+     
 		[Test]
 		public void Test11_CreateCustomer()
 		{
@@ -152,7 +153,50 @@ namespace culqi.net
 
             Assert.AreEqual("refund", (string)json_object["object"]);
         }
-		
+
+        [Test]
+        public void Test15_CreateChargeWithCustomHeader()
+        {
+            try
+            {
+                HttpResponseMessage data = culqiCRUD.CreateChargeWithCustomHeader();
+                if (data.IsSuccessStatusCode)
+                {
+                    var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+                    Assert.IsTrue(json_object.ContainsKey("id"));
+                }
+                else
+                {
+                    Assert.Fail("La solicitud no fue exitosa.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Error durante la ejecución de la prueba.");
+            }
+        }
+
+        [Test]
+        public void Test16_CreateChargeEncryptWithCustomHeader()
+        {
+            try
+            {
+                HttpResponseMessage data = culqiCRUD.CreateChargeEncryptWithCustomHeader();
+                if (data.IsSuccessStatusCode)
+                {
+                    var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+                    Assert.IsTrue(json_object.ContainsKey("id"));
+                }
+                else
+                {
+                    Assert.Fail("La solicitud no fue exitosa.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Error durante la ejecución de la prueba.");
+            }
+        }
     }
 
 }

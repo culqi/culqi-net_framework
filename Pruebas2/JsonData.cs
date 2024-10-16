@@ -137,41 +137,80 @@ public class JsonData
         return map;
     }
 
+    public Dictionary<string, object> JsonCustomHeader()
+    {
+        Dictionary<string, object> map = new Dictionary<string, object>
+            {
+                {"X-Charge-Channel", "recurrent"},
+                {"X-add-header", null},
+                {"X-config-valid", "  "},
+            };
+
+        return map;
+    }
+
     public Dictionary<string, object> JsonPlan()
     {
+        Dictionary<string, object> initialCycles = new Dictionary<string, object>
+            {
+                {"count", 0},
+                {"has_initial_charge", false},
+                {"amount", 0},
+                {"interval_unit_time", 1}
+            };
+
         Dictionary<string, object> metadata = new Dictionary<string, object>
             {
-                {"others_id", "9092"}
+                {"DNI", 123456782}
             };
 
         Dictionary<string, object> map = new Dictionary<string, object>
             {
-                {"amount", 10000},
-                {"currency_code", "PEN"},
-                {"interval", "dias"},
-                {"interval_count", 15},
-                {"limit", 2},
-                {"metadata", metadata},
-                {"name", "plan-culqi-"+GetRandomString()},
-                {"trial_days", 15}
+                {"name", "CY PCI -PLAN-"+util.GetRandomString()},
+                {"short_name", "cp-prueba"},
+                {"description", "Cypress PCI"},
+                {"amount", 300},
+                {"currency", "PEN"},
+                {"interval_unit_time", 1},
+                {"interval_count", 1},
+                {"initial_cycles", initialCycles},
+                {"metadata", metadata}
             };
+
         return map;
     }
 
+    // public Dictionary<string, object> JsonUpdatePlan()
+    // {
+    //     Dictionary<string, object> metadata = new Dictionary<string, object>
+    //         {
+    //             {"abc", "555"}
+    //         };
+
+    //     Dictionary<string, object> map = new Dictionary<string, object>
+    //         {
+    //             {"metadata", metadata}
+    //         };
+    //     return map;
+    // }
     public Dictionary<string, object> JsonUpdatePlan()
     {
         Dictionary<string, object> metadata = new Dictionary<string, object>
             {
-                {"abc", "555"}
+                {"abc", "555"},
+                {"123456789012345678901234567890", "555"}
             };
 
         Dictionary<string, object> map = new Dictionary<string, object>
             {
-                {"metadata", metadata}
+                {"status", 1},
+                {"short_name", "cp-prueba"},
+                {"description", "Cypress PCI"},
+                {"name", "CY PCI -PLAN-"+util.GetRandomString()},
+                {"metadata", metadata},
             };
         return map;
     }
-
     public Dictionary<string, object> JsonCustomer()
     {
         Dictionary<string, object> map = new Dictionary<string, object>
@@ -212,10 +251,34 @@ public class JsonData
 
     public Dictionary<string, object> JsonSubscription(string card_id, string plan_id)
     {
+        Dictionary<string, object> metadata = new Dictionary<string, object>
+            {
+                {"envTest", "Autogenerado de Cypress"}
+            };
+
         Dictionary<string, object> map = new Dictionary<string, object>
             {
                 {"card_id", card_id},
-                {"plan_id", plan_id}
+                {"plan_id", plan_id},
+                {"metadata", metadata},
+                {"tyc", true},
+            };
+
+        return map;
+    }
+
+    public Dictionary<string, object> JsonUpdateSubscription()
+    {
+        Dictionary<string, object> metadata = new Dictionary<string, object>
+            {
+                {"abc", "555"},
+                {"123456789012345678901234567890", "555"}
+            };
+
+        Dictionary<string, object> map = new Dictionary<string, object>
+            {
+                {"card_id", "crd_live_zoFULE875myxwIOP"},
+                {"metadata", metadata}
             };
         return map;
     }

@@ -11,62 +11,109 @@ using LibCulqi.util;
 
 namespace culqi.net
 {
-	public class Generic
-	{	
-		string URL = "/";
+    public class Generic
+    {
+        string URL = "/";
 
-		Security security { get; set; }
+        Security security { get; set; }
         Util util = new Util();
 
         public Generic(Security security, String url)
-		{
-			this.security = security;
+        {
+            this.security = security;
             this.URL = url;
         }
 
-		public HttpResponseMessage List(Dictionary<string, object> query_params)
-		{
+        public HttpResponseMessage List(Dictionary<string, object> query_params)
+        {
+
+
             Dictionary<string, string> validationResponse = VerifyClassValidationList(query_params, this.URL);
+
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
+                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+
+                Console.WriteLine($"MerchantMessage: {merchantMessage}");
                 return util.CustomResponse(response);
             }
-            
+
             var responseObject = new RequestCulqi().Request(query_params, URL, security.secret_key, "get");
 
             return util.CustomResponse(responseObject);
         }
 
-		public HttpResponseMessage Create(Dictionary<string, object> body)
-		{
+        // public HttpResponseMessage Create(Dictionary<string, object> body)
+        // {
+        //     Dictionary<string, string> validationResponse = VerifyClassValidationCreate(body, this.URL);
+        //     if (validationResponse != null)
+        //     {
+        //         RestResponse response = new RestResponse();
+        //         response.StatusCode = HttpStatusCode.BadRequest;
+        //         response.Content = JsonConvert.SerializeObject(validationResponse);
+        //         return util.CustomResponse(response);
+        //     }
+
+        //     var api_key = "";
+        //     var urlPath = URL;
+        //     if (URL.Contains("tokens") || URL.Contains("confirm"))
+        //     {
+        //         api_key = security.public_key;
+        //     }
+        //     else
+        //     {
+        //         api_key = security.secret_key;
+        //     }
+        //     if(URL.Contains("plans") || URL.Contains("subscriptions"))
+        //     {
+        //         urlPath += "create";
+        //     }
+
+        //     var responseObject = new RequestCulqi().Request(body, urlPath, api_key, "post");
+
+        //     return util.CustomResponse(responseObject);
+
+        // }
+        public HttpResponseMessage Create(Dictionary<string, object> body, Dictionary<string, object> custom_header = null)
+        {
             Dictionary<string, string> validationResponse = VerifyClassValidationCreate(body, this.URL);
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
+                // Obtener el valor asociado con la clave "MerchantMessage" o proporcionar un valor predeterminado
+                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+
+                Console.WriteLine($"MerchantMessage: {merchantMessage}");
+
                 return util.CustomResponse(response);
             }
-
             var api_key = "";
             if (URL.Contains("tokens") || URL.Contains("confirm"))
             {
                 api_key = security.public_key;
             }
+            else if (URL.Contains("plans") || URL.Contains("subscriptions"))
+            {
+                api_key = security.secret_key;
+                URL = URL + "create";
+            }
             else
             {
                 api_key = security.secret_key;
             }
-            
-            var responseObject = new RequestCulqi().Request(body, URL, api_key, "post");
+
+            var responseObject = new RequestCulqi().Request(body, URL, api_key, "post", custom_header);
 
             return util.CustomResponse(responseObject);
 
         }
-        public HttpResponseMessage Create(Dictionary<string, object> body, String rsa_id, String rsa_key)
+
+        public HttpResponseMessage Create(Dictionary<string, object> body, String rsa_id, String rsa_key, Dictionary<string, object> custom_header = null)
         {
             Dictionary<string, string> validationResponse = VerifyClassValidationCreate(body, this.URL);
             if (validationResponse != null)
@@ -96,12 +143,12 @@ namespace culqi.net
             Console.WriteLine(encryptedResult);
             body = encryptedResult;
 
-            var responseObject = new RequestCulqi().Request(body, URL, api_key, "post", rsa_id);
+            var responseObject = new RequestCulqi().Request(body, URL, api_key, "post", rsa_id, custom_header);
 
             return util.CustomResponse(responseObject);
         }
         public HttpResponseMessage Get(String id)
-		{
+        {
             Dictionary<string, string> validationResponse = VerifyClassValidationUpdate(id, this.URL);
             if (validationResponse != null)
             {
@@ -116,17 +163,21 @@ namespace culqi.net
             return util.CustomResponse(responseObject);
         }
 
-		public HttpResponseMessage Update(Dictionary<string, object> body, String id)
-		{
+        public HttpResponseMessage Update(Dictionary<string, object> body, String id)
+        {
             Dictionary<string, string> validationResponse = VerifyClassValidationUpdate(id, this.URL);
+            string merchantMessage = "";
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
+                merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                Console.WriteLine($"MerchantMessage: {merchantMessage}");
                 return util.CustomResponse(response);
             }
-
+            merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+            Console.WriteLine($"MerchantMessage: {merchantMessage}");
             var responseObject = new RequestCulqi().Request(body, URL + id + "/", security.secret_key, "patch");
 
             return util.CustomResponse(responseObject);
@@ -134,12 +185,15 @@ namespace culqi.net
 
         public HttpResponseMessage Update(Dictionary<string, object> body, String id, String rsa_id, String rsa_key)
         {
-            Dictionary<string, string> validationResponse = VerifyClassValidationUpdate(id, this.URL);
+            Dictionary<string, string> validationResponse = VerifyClassValidationPayloadUpdate(id, this.URL, body);
+            string merchantMessage = "";
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
+                merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                Console.WriteLine($"MerchantMessage: {merchantMessage}");
                 return util.CustomResponse(response);
             }
 
@@ -151,7 +205,8 @@ namespace culqi.net
             // Esperar a que la tarea se complete y obtener el resultado usando la propiedad Result
             var encryptedResult = encryptedResultTask;//.Result;
             body = encryptedResult;
-
+            merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+            Console.WriteLine($"MerchantMessage: {merchantMessage}");
             var responseObject = new RequestCulqi().Request(body, URL + id + "/", security.secret_key, "patch", rsa_id);
 
             return util.CustomResponse(responseObject);
@@ -160,15 +215,19 @@ namespace culqi.net
         public HttpResponseMessage Delete(String id)
         {
             Dictionary<string, string> validationResponse = VerifyClassValidationUpdate(id, this.URL);
+            string merchantMessage = "";
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
+                merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                Console.WriteLine($"MerchantMessage: {merchantMessage}");
                 return util.CustomResponse(response);
             }
             var responseObject = new RequestCulqi().Request(null, URL + id + "/", security.secret_key, "delete");
-
+            merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+            Console.WriteLine($"MerchantMessage: {merchantMessage}");
             return util.CustomResponse(responseObject);
         }
         public HttpResponseMessage CreateYape(Dictionary<string, object> body)
@@ -235,6 +294,30 @@ namespace culqi.net
             }
             return null;
         }
+        private static Dictionary<string, string> VerifyClassValidationPayloadUpdate(string id, string url, Dictionary<string, object> body)
+        {
+            try
+            {
+                if (url.Contains("plans"))
+                {
+                    Helper.ValidateId(id);
+                    Helper.ValidateStringStart(id, "pln");
+                    PlanValidation.Update(body);
+                }
+                if (url.Contains("subscriptions"))
+                {
+                    Helper.ValidateId(id);
+                    Helper.ValidateStringStart(id, "sxn");
+                    //SubscriptionValidation.Update(body);
+                }
+            }
+            catch (CustomException e)
+            {
+                Dictionary<string, string> errorDictionary = e.ErrorData.ToDictionary();
+                return errorDictionary;
+            }
+            return null;
+        }
         private static Dictionary<string, string> VerifyClassValidationUpdate(string id, string url)
         {
             try
@@ -257,6 +340,7 @@ namespace culqi.net
                 }
                 if (url.Contains("plans"))
                 {
+                    Helper.ValidateId(id);
                     Helper.ValidateStringStart(id, "pln");
                 }
                 if (url.Contains("refunds"))
@@ -265,6 +349,7 @@ namespace culqi.net
                 }
                 if (url.Contains("subscriptions"))
                 {
+                    Helper.ValidateId(id);
                     Helper.ValidateStringStart(id, "sxn");
                 }
                 if (url.Contains("orders"))
@@ -292,7 +377,7 @@ namespace culqi.net
             }
             return null;
         }
-        
+
         private static Dictionary<string, string> VerifyClassValidationList(Dictionary<string, object> query_params, string url)
         {
             try
