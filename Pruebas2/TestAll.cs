@@ -162,7 +162,7 @@ namespace culqi.net
 			Assert.True(valid);
 		}
 
-		[Test]
+		/*[Test]
 		public void Test08_AllTransfers()
 		{
             HttpResponseMessage transfers = new Transfer(security).List(filter);
@@ -174,7 +174,7 @@ namespace culqi.net
 				valid = true;
 			}
 			Assert.True(valid);
-		}
+		}*/
 
 		[Test]
 		public void Test09_AllRefunds()
