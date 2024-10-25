@@ -12,10 +12,10 @@ namespace culqi.net
 	{	
 		Dictionary<string, object> filter = new Dictionary<string, object>
 		{
-			// {"limit", 50},
+			 {"limit", 1},
 			// { "status", 2},
 			// {"before", "snx_live_JerEsyqmMaJzcCcw"},
-			{"after", "snx_live_neFhrLrXQvozBdWn"}
+			//{"after", "snx_live_neFhrLrXQvozBdWn"}
         };
 
 		Security security = null;
@@ -90,12 +90,12 @@ namespace culqi.net
         {
             Dictionary<string, object> filterPlan = new Dictionary<string, object>
             {
-                {"limit", 50},
-                {"min_amount", 300},
-                {"max_amount", 500000},
-                {"status", 2},
-                {"before", "pln_live_qnJOtJiuGT88dAa5"},
-                {"after", "pln_live_c6cm1JuefM0WVkli"},
+                {"limit", 1},
+                //{"min_amount", 300},
+                //{"max_amount", 500000},
+                //{"status", 2},
+                //{"before", "pln_live_qnJOtJiuGT88dAa5"},
+                //{"after", "pln_live_c6cm1JuefM0WVkli"},
                 //{"creation_date_from", "2023-12-30T00:00:00.000Z"},
                 //{"creation_date_to", "2023-12-20T00:00:00.000Z"},
             };
@@ -115,11 +115,11 @@ namespace culqi.net
 		{
             Dictionary<string, object> filterSubscriptions = new Dictionary<string, object>
             {
-                // {"limit", 50},
+                 {"limit", 1},
                 // {"plan_id", "pln_live_WIqnS2qzco4TeTnT"},
                 // {"status", 1},
                 // {"before", "sxn_live_JerEsyqmMaJzcCcw"},
-                {"after", "sxn_live_neFrhLrXQvozBdWn"},
+                //{"after", "sxn_live_neFrhLrXQvozBdWn"},
                 //{"creation_date_from", "2023-12-30T00:00:00.000Z"},
                 //{"creation_date_to", "2023-12-20T00:00:00.000Z"},
             };
