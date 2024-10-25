@@ -267,7 +267,7 @@ public class JsonData
         return map;
     }
 
-    public Dictionary<string, object> JsonUpdateSubscription()
+    public Dictionary<string, object> JsonUpdateSubscription(string card_id)
     {
         Dictionary<string, object> metadata = new Dictionary<string, object>
             {
@@ -277,7 +277,7 @@ public class JsonData
 
         Dictionary<string, object> map = new Dictionary<string, object>
             {
-                {"card_id", "crd_live_zoFULE875myxwIOP"},
+                {"card_id", card_id},
                 {"metadata", metadata}
             };
         return map;

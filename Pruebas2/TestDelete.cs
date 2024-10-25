@@ -29,12 +29,10 @@ namespace culqi.net
 		[Test]
 		public void Test02_DeletePlan()
 		{
-            // HttpResponseMessage data = culqiCRUD.CreatePlan();
-			// var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-            // HttpResponseMessage plan = culqiCRUD.DeletePlan((string)json_object["id"]);
-			// var json_plan = JObject.Parse(plan.Content.ReadAsStringAsync().Result);
-            // Assert.True((bool)json_plan["deleted"]);
-			HttpResponseMessage plan = culqiCRUD.DeletePlan("");
+
+			HttpResponseMessage data = culqiCRUD.CreatePlan();
+			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage plan = culqiCRUD.DeletePlan((string)json_object["id"]);
             var json_plan = JObject.Parse(plan.Content.ReadAsStringAsync().Result);
             Assert.True((bool)json_plan["deleted"]);
 		}

@@ -19,10 +19,9 @@ namespace culqi.net
 		{
 			//var data = culqiCRUD.CreateToken().Content;
             HttpResponseMessage data = culqiCRUD.CreateToken();
-
-            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            string jsonContent = data.Content.ReadAsStringAsync().Result;
+             var json_object = JObject.Parse(jsonContent);
             
-            Console.WriteLine(data.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("token",(string)json_object["object"]);
         }
         
@@ -141,8 +140,9 @@ namespace culqi.net
 
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("subscription", (string)json_object["object"]);
-		}
+            Assert.IsTrue(json_object.ContainsKey("id"));
+            Assert.IsTrue(json_object.ContainsKey("plan_id"));		
+        }
 
         [Test]
         public void Test14_CreateRefund()
