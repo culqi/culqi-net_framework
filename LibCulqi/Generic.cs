@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using System.Net;
 using LibCulqi.util;
+using System.Diagnostics;
 
 
 namespace culqi.net
@@ -140,7 +141,9 @@ namespace culqi.net
             var encryptedResultTask = encrypt.EncryptWithAESRSA(jsonString, rsa_key, true);
             // Esperar a que la tarea se complete y obtener el resultado usando la propiedad Result
             var encryptedResult = encryptedResultTask;//.Result;
-            Console.WriteLine(encryptedResult);
+            string jsonOutput = JsonConvert.SerializeObject(encryptedResult, Formatting.Indented);
+            Console.WriteLine(jsonOutput);
+            Console.WriteLine("encryptedDataaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             body = encryptedResult;
 
             var responseObject = new RequestCulqi().Request(body, URL, api_key, "post", rsa_id, custom_header);

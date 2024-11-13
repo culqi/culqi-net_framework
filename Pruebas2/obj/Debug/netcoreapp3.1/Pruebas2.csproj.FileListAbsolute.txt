@@ -1,5 +1,0 @@
-C:\Users\Jordan\source\repos\LibCulqi\Pruebas2\obj\Debug\netcoreapp3.1\Pruebas2.csproj.AssemblyReference.cache
-C:\Users\Jordan\source\repos\LibCulqi\Pruebas2\obj\Debug\netcoreapp3.1\Pruebas2.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Jordan\source\repos\LibCulqi\Pruebas2\obj\Debug\netcoreapp3.1\Pruebas2.AssemblyInfoInputs.cache
-C:\Users\Jordan\source\repos\LibCulqi\Pruebas2\obj\Debug\netcoreapp3.1\Pruebas2.AssemblyInfo.cs
-C:\Users\Jordan\source\repos\LibCulqi\Pruebas2\obj\Debug\netcoreapp3.1\Pruebas2.csproj.CoreCompileInputs.cache

@@ -19,20 +19,20 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.IsTrue(json_object.ContainsKey("id"));
-            Assert.IsTrue(json_object.ContainsKey("interval_unit_time"));
-            Assert.IsTrue(json_object.ContainsKey("interval_count"));
-            Assert.IsTrue(json_object.ContainsKey("amount"));
-            Assert.IsTrue(json_object.ContainsKey("name"));
-            Assert.IsTrue(json_object.ContainsKey("description"));
-            Assert.IsTrue(json_object.ContainsKey("short_name"));
-            Assert.IsTrue(json_object.ContainsKey("currency"));
-            Assert.IsTrue(json_object.ContainsKey("initial_cycles"));
-            Assert.IsTrue(json_object.ContainsKey("metadata"));
-            Assert.IsTrue(json_object.ContainsKey("total_subscriptions"));
-            Assert.IsTrue(json_object.ContainsKey("status"));
-            Assert.IsTrue(json_object.ContainsKey("creation_date"));
-            Assert.IsTrue(json_object.ContainsKey("slug"));
+            Assert.That(json_object.ContainsKey("id"), Is.True);
+            Assert.That(json_object.ContainsKey("interval_unit_time"), Is.True);
+            Assert.That(json_object.ContainsKey("interval_count"), Is.True);
+            Assert.That(json_object.ContainsKey("amount"), Is.True);
+            Assert.That(json_object.ContainsKey("name"), Is.True);
+            Assert.That(json_object.ContainsKey("description"), Is.True);
+            Assert.That(json_object.ContainsKey("short_name"), Is.True);
+            Assert.That(json_object.ContainsKey("currency"), Is.True);
+            Assert.That(json_object.ContainsKey("initial_cycles"), Is.True);
+            Assert.That(json_object.ContainsKey("metadata"), Is.True);
+            Assert.That(json_object.ContainsKey("total_subscriptions"), Is.True);
+            Assert.That(json_object.ContainsKey("status"), Is.True);
+            Assert.That(json_object.ContainsKey("creation_date"), Is.True);
+            Assert.That(json_object.ContainsKey("slug"), Is.True);
         }
 
 
@@ -43,7 +43,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("order", (string)json_object["object"]);
+            Assert.Equals("order", (string)json_object["object"]);
         }
 
 
@@ -54,7 +54,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("charge", (string)json_object["object"]);
+            Assert.Equals("charge", (string)json_object["object"]);
         }
 
 
@@ -65,7 +65,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("card", (string)json_object["object"]);
+            Assert.Equals("card", (string)json_object["object"]);
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             Console.WriteLine(json_object);
             //Assert.AreEqual("plan", (string)json_object["object"]);
-            Assert.IsTrue(json_object.ContainsKey("id"));
+            Assert.That(json_object.ContainsKey("id"), Is.True);
 
         }
 
