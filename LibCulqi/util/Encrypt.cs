@@ -18,51 +18,44 @@ namespace culqi.net
 
         public Dictionary<string, object> EncryptWithAESRSA(string data, string publicKey, bool isJson)
         {
-            // Serialize the JSON object to a string
-            string jsonData = isJson ? JsonConvert.SerializeObject(data) : data;
+            Console.WriteLine(publicKey);
+             // Serialize the JSON object to a string
+            string jsonData = JsonConvert.SerializeObject(data);
 
             // Convert the string to a byte array
-            var jsonBytes = Encoding.UTF8.GetBytes(jsonData);
+            var jsonBytes = Encoding.UTF8.GetBytes(data);
             string encryptedData = "";
-
             // Generate random key and IV
+            
             byte[] key = new byte[32];
             byte[] iv = new byte[GCM_IV_LENGTH];
+            byte[] tag = new byte[GCM_TAG_LENGTH];
             using (var rng = new RNGCryptoServiceProvider())
             {
                 rng.GetBytes(key);
                 rng.GetBytes(iv);
             }
 
-            // Encrypt plaintext with AES-256 in CBC mode
-            byte[] cipherText;
-            using (var aes = new AesCryptoServiceProvider())
+ 
+            // Create a GCM cipher
+            using (var cipher = new AesGcm(key))
             {
-                aes.Key = key;
-                aes.IV = iv;
-                aes.Mode = CipherMode.CBC;
-                aes.Padding = PaddingMode.PKCS7;
+                // Encrypt the message
+                byte[] encryptedMessage = new byte[data.Length];
+                cipher.Encrypt(iv, Encoding.UTF8.GetBytes(data), encryptedMessage, tag);
 
-                using (var encryptor = aes.CreateEncryptor())
-                {
-                    cipherText = encryptor.TransformFinalBlock(jsonBytes, 0, jsonBytes.Length);
-                    encryptedData = Convert.ToBase64String(cipherText);
-                }
+                // Encode the IV and encrypted message as Base64 strings
+                encryptedData = Convert.ToBase64String(encryptedMessage);
             }
 
-            // RSA ENCRYPT SHA256
+            //RSA ENCRYPT SHA256
             string publicKeyString = publicKey;
 
             byte[] publicKeyBytes = Convert.FromBase64String(publicKeyString);
 
             // create an RSA object and import the public key bytes
             RSA rsa = RSA.Create();
-            RSAParameters rsaParams = new RSAParameters
-            {
-                Modulus = publicKeyBytes, // You might need to set the Exponent as well, depending on your key format
-                Exponent = new byte[] { 1, 0, 1 } // Common exponent for RSA keys
-            };
-            rsa.ImportParameters(rsaParams);
+            rsa.ImportSubjectPublicKeyInfo(publicKeyBytes, out _);
 
             // encrypt the data using RSA OAEP SHA256 padding
             byte[] encryptedKey = rsa.Encrypt(key, RSAEncryptionPadding.OaepSHA256);
@@ -72,13 +65,15 @@ namespace culqi.net
             string encryptedKeyToJson = Convert.ToBase64String(encryptedKey);
             string encryptedIvToJson = Convert.ToBase64String(encryptedIv);
 
-            // return the encrypted data
+            // print the encrypted data
+
+             
             return new Dictionary<string, object>
-            {
-                { "encrypted_data", encryptedData },
-                { "encrypted_key", encryptedKeyToJson },
-                { "encrypted_iv", encryptedIvToJson }
-            };
+                {
+                    { "encrypted_data", encryptedData },
+                    { "encrypted_key", encryptedKeyToJson },
+                    { "encrypted_iv", encryptedIvToJson }
+                };
         }
     }
 }

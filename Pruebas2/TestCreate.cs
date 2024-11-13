@@ -20,9 +20,9 @@ namespace culqi.net
 			//var data = culqiCRUD.CreateToken().Content;
             HttpResponseMessage data = culqiCRUD.CreateToken();
             string jsonContent = data.Content.ReadAsStringAsync().Result;
-             var json_object = JObject.Parse(jsonContent);
-            
-            Assert.AreEqual("token",(string)json_object["object"]);
+            var json_object = JObject.Parse(jsonContent);
+            TestContext.WriteLine(json_object.ToString());
+            Assert.That((string)json_object["object"], Is.EqualTo("token"));
         }
         
         [Test]
@@ -31,8 +31,8 @@ namespace culqi.net
             HttpResponseMessage data = culqiCRUD.CreateTokenEncrypt();
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-
-            Assert.AreEqual("token", (string)json_object["object"]);
+            TestContext.WriteLine(json_object.ToString());
+            Assert.That((string)json_object["object"], Is.EqualTo("token"));
         }
         
         [Test]
@@ -40,7 +40,7 @@ namespace culqi.net
         {
             HttpResponseMessage data = culqiCRUD.CreateTokenYape();
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-            Assert.AreEqual("token", (string)json_object["object"]);
+            Assert.Equals("token", (string)json_object["object"]);
         }
 
 		[Test]
@@ -49,7 +49,7 @@ namespace culqi.net
             HttpResponseMessage data = culqiCRUD.CreateCharge();
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-            Assert.AreEqual("charge", (string)json_object["object"]);
+            Assert.Equals("charge", (string)json_object["object"]);
 		}
 
         [Test]
@@ -59,7 +59,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("charge", (string)json_object["object"]);
+            Assert.Equals("charge", (string)json_object["object"]);
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace culqi.net
 
             var json_capture = JObject.Parse(capture_data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreNotSame("charge", (string)json_capture["id"]);
+            Assert.That((string)json_capture["id"], Is.Not.SameAs("charge"));
         }
 
         [Test]
@@ -79,7 +79,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("order", (string)json_object["object"]);
+            Assert.Equals("order", (string)json_object["object"]);
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("order", (string)json_object["object"]);
+            Assert.Equals("order", (string)json_object["object"]);
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("order", (string)json_object["object"]);
+            Assert.Equals("order", (string)json_object["object"]);
         }
 
         [Test]
@@ -109,8 +109,8 @@ namespace culqi.net
 
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.IsTrue(json_object.ContainsKey("id"));
-            Assert.IsTrue(json_object.ContainsKey("slug"));
+            Assert.That(json_object.ContainsKey("id"), Is.True);
+            Assert.That(json_object.ContainsKey("slug"), Is.True);
 		}
      
 		[Test]
@@ -120,7 +120,7 @@ namespace culqi.net
 
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("customer", (string)json_object["object"]);
+            Assert.Equals("customer", (string)json_object["object"]);
 		}
 
 		[Test]
@@ -130,7 +130,7 @@ namespace culqi.net
 
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             ;
-            Assert.AreEqual("card", (string)json_object["object"]);
+            Assert.Equals("card", (string)json_object["object"]);
 		}
 
 		[Test]
@@ -140,8 +140,8 @@ namespace culqi.net
 
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.IsTrue(json_object.ContainsKey("id"));
-            Assert.IsTrue(json_object.ContainsKey("plan_id"));		
+            Assert.That(json_object.ContainsKey("id"), Is.True);
+            Assert.That(json_object.ContainsKey("plan_id"), Is.True);	
         }
 
         [Test]
@@ -151,7 +151,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("refund", (string)json_object["object"]);
+            Assert.Equals("refund", (string)json_object["object"]);
         }
 
         [Test]
@@ -163,7 +163,7 @@ namespace culqi.net
                 if (data.IsSuccessStatusCode)
                 {
                     var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-                    Assert.IsTrue(json_object.ContainsKey("id"));
+                    Assert.That(json_object.ContainsKey("id"), Is.True);
                 }
                 else
                 {
@@ -185,7 +185,7 @@ namespace culqi.net
                 if (data.IsSuccessStatusCode)
                 {
                     var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-                    Assert.IsTrue(json_object.ContainsKey("id"));
+                    Assert.That(json_object.ContainsKey("id"), Is.True);
                 }
                 else
                 {
