@@ -21,7 +21,7 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage token = culqiCRUD.GetToken((string)json_object["id"]);
             var json_token = JObject.Parse(token.Content.ReadAsStringAsync().Result);
-            Assert.AreEqual("token", (string)json_token["object"]);
+            Assert.Equals("token", (string)json_token["object"]);
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage order = culqiCRUD.GetOrder((string)json_object["id"]);
             var json_order = JObject.Parse(order.Content.ReadAsStringAsync().Result);
-            Assert.AreEqual("order", (string)json_order["object"]);
+            Assert.Equals("order", (string)json_order["object"]);
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage charge = culqiCRUD.GetCharge((string)json_object["id"]);
             var json_charge = JObject.Parse(charge.Content.ReadAsStringAsync().Result);
-            Assert.AreEqual("charge", (string)json_charge["object"]);
+            Assert.Equals("charge", (string)json_charge["object"]);
         }
 
         [Test]
@@ -51,8 +51,8 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage plan = culqiCRUD.GetPlan((string)json_object["id"]);
             var json_plan = JObject.Parse(plan.Content.ReadAsStringAsync().Result);
-            //Assert.AreEqual("id", (string)json_plan["object"]);
-            Assert.IsTrue(json_plan.ContainsKey("id"));
+            //Assert.Equals("id", (string)json_plan["object"]);
+            Assert.That(json_plan.ContainsKey("id"), Is.True);
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage customer = culqiCRUD.GetCustomer((string)json_object["id"]);
             var json_customer = JObject.Parse(customer.Content.ReadAsStringAsync().Result);
-            Assert.AreEqual("customer", (string)json_customer["object"]);
+            Assert.Equals("customer", (string)json_customer["object"]);
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage card = culqiCRUD.GetCard((string)json_object["id"]);
             var json_card = JObject.Parse(card.Content.ReadAsStringAsync().Result);
-            Assert.AreEqual("card", (string)json_card["object"]);
+            Assert.Equals("card", (string)json_card["object"]);
         }
 
         [Test]
@@ -82,8 +82,8 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage subscrption = culqiCRUD.GetSubscription((string)json_object["id"]);
             var json_subscrption = JObject.Parse(subscrption.Content.ReadAsStringAsync().Result);
-            //Assert.AreEqual("subscription", (string)json_subscrption["object"]);
-            Assert.IsTrue(json_subscrption.ContainsKey("id"));
+            //Assert.Equals("subscription", (string)json_subscrption["object"]);
+             Assert.That(json_subscrption.ContainsKey("id"), Is.True);
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage refund = culqiCRUD.GetRefund((string)json_object["id"]);
             var json_refund = JObject.Parse(refund.Content.ReadAsStringAsync().Result);
-            Assert.AreEqual("refund", (string)json_refund["object"]);
+            Assert.Equals("refund", (string)json_refund["object"]);
         }
         
     }
