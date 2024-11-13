@@ -21,9 +21,7 @@ namespace culqi.net
             HttpResponseMessage data = culqiCRUD.CreateToken();
             string jsonContent = data.Content.ReadAsStringAsync().Result;
             var json_object = JObject.Parse(jsonContent);
-            TestContext.WriteLine("inicio log");
             TestContext.WriteLine(json_object.ToString());
-            TestContext.WriteLine("fin log");
             Assert.That((string)json_object["object"], Is.EqualTo("token"));
         }
         
@@ -33,9 +31,7 @@ namespace culqi.net
             HttpResponseMessage data = culqiCRUD.CreateTokenEncrypt();
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-            TestContext.WriteLine("inicio log");
             TestContext.WriteLine(json_object.ToString());
-            TestContext.WriteLine("fin log");
             Assert.That((string)json_object["object"], Is.EqualTo("token"));
         }
         
