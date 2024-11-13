@@ -40,7 +40,7 @@ namespace culqi.net
 			{
 				valid = true;
 			}
-			Assert.True(valid);
+			Assert.That(valid, Is.True);
 		}
 		
 		[Test]
@@ -54,7 +54,7 @@ namespace culqi.net
 			{
 				valid = true;
 			}
-			Assert.True(valid);
+			Assert.That(valid, Is.True);
 		}
 
         [Test]
@@ -68,7 +68,7 @@ namespace culqi.net
             {
                 valid = true;
             }
-            Assert.True(valid);
+            Assert.That(valid, Is.True);
         }
 
         [Test]
@@ -83,7 +83,7 @@ namespace culqi.net
 			//{
 			//	valid = true;
 			//}
-			//Assert.True(valid);
+			//Assert.That(valid, Is.True);
 		// }
 
 		public void Test04_AllPlans()
@@ -107,7 +107,7 @@ namespace culqi.net
             {
                 valid = true;
             }
-            Assert.True(valid);
+            Assert.That(valid, Is.True);
         }
 
 		[Test]
@@ -131,7 +131,7 @@ namespace culqi.net
             {
                 valid = true;
             }
-            Assert.True(valid);
+            Assert.That(valid, Is.True);
 		}
 
 		[Test]
@@ -145,7 +145,7 @@ namespace culqi.net
 			{
 				valid = true;
 			}
-			Assert.True(valid);
+			Assert.That(valid, Is.True);
 		}
 
 		[Test]
@@ -159,7 +159,7 @@ namespace culqi.net
 			{
 				valid = true;
 			}
-			Assert.True(valid);
+			Assert.That(valid, Is.True);
 		}
 
 		/*[Test]
@@ -173,7 +173,7 @@ namespace culqi.net
 			{
 				valid = true;
 			}
-			Assert.True(valid);
+			Assert.That(valid, Is.True);
 		}*/
 
 		[Test]
@@ -187,7 +187,7 @@ namespace culqi.net
 			{
 				valid = true;
 			}
-			Assert.True(valid);
+			Assert.That(valid, Is.True);
 		}
 		
 	}

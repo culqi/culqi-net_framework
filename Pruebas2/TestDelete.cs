@@ -23,7 +23,7 @@ namespace culqi.net
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage subscription = culqiCRUD.DeleteSubscription((string)json_object["id"]);
 			var json_subscription = JObject.Parse(subscription.Content.ReadAsStringAsync().Result);
-            Assert.True((bool)json_subscription["deleted"]);
+			Assert.That((bool)json_subscription["deleted"], Is.True);
 		}
 
 		[Test]
@@ -34,7 +34,7 @@ namespace culqi.net
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage plan = culqiCRUD.DeletePlan((string)json_object["id"]);
             var json_plan = JObject.Parse(plan.Content.ReadAsStringAsync().Result);
-            Assert.True((bool)json_plan["deleted"]);
+			Assert.That((bool)json_plan["deleted"], Is.True);
 		}
 
 		[Test]
@@ -44,7 +44,7 @@ namespace culqi.net
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage card = culqiCRUD.DeleteCard((string)json_object["id"]);
 			var json_card = JObject.Parse(card.Content.ReadAsStringAsync().Result);
-            Assert.True((bool)json_card["deleted"]);
+			Assert.That((bool)json_card["deleted"], Is.True);
 		}
 
 		[Test]
@@ -54,7 +54,7 @@ namespace culqi.net
 			var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage customer = culqiCRUD.DeleteCustomer((string)json_object["id"]);
 			var json_customer = JObject.Parse(customer.Content.ReadAsStringAsync().Result);
-            Assert.True((bool)json_customer["deleted"]);
+			Assert.That((bool)json_customer["deleted"], Is.True);
 		}
 		
     }
