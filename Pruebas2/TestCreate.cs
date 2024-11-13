@@ -59,7 +59,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.Equals("charge", (string)json_object["object"]);
+            Assert.That((string)json_object["object"], Is.EqualTo("charge"));
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.Equals("order", (string)json_object["object"]);
+            Assert.That((string)json_object["object"], Is.EqualTo("order"));
         }
 
         [Test]
