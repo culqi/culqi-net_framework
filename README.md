@@ -43,14 +43,14 @@ security.rsa_key = "INSERTE_SU_LLAVE_RSA";
 
 ### Configurar las pruebas y ejemplos
 
-`INSERTE_SU_LLAVE_PUBLICA` e `INSERTE_SU_LLAVE_PRIVADA` son placeholders, no llaves válidas para autenticar peticiones. Para ejecutar las pruebas, reemplázalos localmente en los constructores de estos dos archivos:
+`INSERTE_SU_LLAVE_PUBLICA`, `INSERTE_SU_LLAVE_PRIVADA`, `INSERTE_SU_RSA_ID` e `INSERTE_SU_LLAVE_RSA` son placeholders, no llaves válidas para autenticar peticiones. Para ejecutar las pruebas, reemplázalos localmente en los constructores de estos dos archivos:
 
 - `Pruebas2/CulqiCRUD.cs`
 - `Pruebas2/TestAll.cs`
 
 Usa tu llave pública de pruebas (prefijo `pk_test_`) y tu llave privada de pruebas (prefijo `sk_test_`), obtenidas desde CulqiPanel. No uses llaves de producción en las pruebas.
 
-Estas pruebas son de integración: realizan llamadas reales al API y pueden crear, modificar o eliminar recursos. Para las pruebas de cifrado, configura también tu propio `security.rsa_id` y `security.rsa_key`.
+Estas pruebas son de integración: realizan llamadas reales al API y pueden crear, modificar o eliminar recursos. Para las pruebas de cifrado, reemplaza también `INSERTE_SU_RSA_ID` y `INSERTE_SU_LLAVE_RSA` por tu propio `rsa_id` y tu llave pública RSA (`rsa_key`), obtenidos desde CulqiPanel.
 
 ### Encriptar payload
 
